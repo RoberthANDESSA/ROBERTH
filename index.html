@@ -1,39 +1,48 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <!-- Evitar zoom en celulares para que se comporte como aplicación nativa -->
+    <!-- Evitar zoom en celulares para comportamiento nativo de App de última generación -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Biolink Oficial - Roberth Coriza ✨</title>
+    <title>Roberth Coriza • Terminal de Negocios Inteligente</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Orbitron (Tecnológica) y Rajdhani (Moderna) -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome para Iconos -->
+    
+    <!-- Google Fonts: Plus Jakarta Sans (Corporativa de élite) y Orbitron (Sci-Fi de alta tecnología) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Pro/Free Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Configuración Avanzada de Tailwind: Paleta Obsidian, Amarillo Protagonista y Cian Eléctrico -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Rajdhani', 'sans-serif'],
-                        display: ['Orbitron', 'sans-serif'], 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
                     },
                     colors: {
                         gold: {
-                            light: '#ffe066',
-                            DEFAULT: '#ffd700',
-                            dark: '#b39200',
-                            bronze: '#8a6d3b'
+                            light: '#FFE600',
+                            DEFAULT: '#FFD600', // Amarillo protagonista hiper-vibrante
+                            dark: '#D4B200',
+                            muted: 'rgba(255, 214, 0, 0.15)'
                         },
                         cyber: {
-                            black: '#050508', 
-                            darkGray: '#08080c',
-                            blue: '#00f0ff',
-                            red: '#ff003c',
-                            purple: '#bd00ff'
+                            blue: '#00E5FF',  // Cian eléctrico de acento
+                            blueMuted: 'rgba(0, 229, 255, 0.2)',
+                            darkBg: '#06060c', // Negro absoluto profundo
+                            cardBg: 'rgba(10, 10, 18, 0.85)'
                         }
+                    },
+                    boxShadow: {
+                        'neon-gold': '0 0 20px rgba(255, 214, 0, 0.25)',
+                        'neon-gold-hover': '0 0 35px rgba(255, 214, 0, 0.5)',
+                        'neon-cyan': '0 0 20px rgba(0, 229, 255, 0.3)',
+                        'hologram': 'inset 0 0 15px rgba(0, 229, 255, 0.05), 0 10px 30px rgba(0, 0, 0, 0.8)',
                     }
                 }
             }
@@ -41,865 +50,934 @@
     </script>
 
     <style>
-        body {
-            background-color: #050508;
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
             min-height: 100vh;
+            background-color: #05050a; /* Fondo ultra-oscuro */
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            font-family: 'Rajdhani', sans-serif;
-            color: #fff;
             user-select: none;
             -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
 
-        /* Estruktura ti Nabalitokan a Tarheta - NASARMING */
-        .gold-card {
-            background: rgba(5, 5, 8, 0.35);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 2px solid rgba(255, 215, 0, 0.45);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.08), inset 0 0 15px rgba(255, 215, 0, 0.03);
+        /* ESCENA HOLOGRÁFICA 3D FLUIDA EN SEGUNDO PLANO */
+        .scene {
+            perspective: 1400px;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .data-layer {
+            position: absolute;
+            width: 220vw;
+            height: 220vh;
+            transform: rotateX(60deg) rotateZ(-28deg) translateY(-30%);
+            transform-style: preserve-3d;
+            display: flex;
+            gap: 16px;
+            pointer-events: none;
+        }
+
+        /* Profundidad de campo y desenfoque inteligente de lentes */
+        .layer-bg {
+            filter: blur(10px);
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .layer-mid {
+            filter: blur(4px);
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        .layer-front {
+            filter: blur(0px);
+            opacity: 0.65;
+            z-index: 3;
+        }
+
+        /* Columnas de bits en caída suave */
+        .column {
             position: relative;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-size: 12px;
+            font-weight: 900;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            text-align: center;
+            animation: flow linear infinite;
         }
 
-        .gold-card:hover, .gold-card:active {
-            border-color: rgba(255, 215, 0, 1);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.35), inset 0 0 20px rgba(255, 215, 0, 0.1);
-            transform: translateY(-2px);
+        /* Paleta futurista ultra-vibrante */
+        .color-gold-stream { color: #FFD600; text-shadow: 0 0 10px rgba(255, 214, 0, 0.5); }
+        .color-cyan-stream { color: #00E5FF; text-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
+        .color-white-stream { color: #f8fafc; text-shadow: 0 0 8px rgba(248, 250, 252, 0.3); }
+
+        @keyframes flow {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
         }
 
-        /* Brillo de texto dorado metálico */
-        .gold-text-shine {
-            background: linear-gradient(to right, #ffffff, #ffd700, #b39200, #ffffff);
+        /* Viñeta cinematográfica para concentrar la luz en el centro */
+        .vignette {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 25%, #05050a 100%);
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        #bokeh-canvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            filter: blur(4px);
+        }
+
+        /* TARJETAS DE CRISTAL DE ZAFIRO Y NEÓN AMARILLO PROTAGONISTA */
+        .cyber-glass-card {
+            background: linear-gradient(145deg, rgba(14, 14, 28, 0.85) 0%, rgba(6, 6, 12, 0.95) 100%);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1.5px solid rgba(255, 214, 0, 0.2);
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.05), 0 20px 40px -10px rgba(0, 0, 0, 0.9);
+            transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+        }
+
+        .cyber-glass-card:hover {
+            border-color: rgba(255, 214, 0, 0.6);
+            box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.08), 0 0 25px rgba(255, 214, 0, 0.15), 0 25px 50px -10px rgba(0, 0, 0, 0.95);
+            transform: translateY(-3px);
+        }
+
+        /* Efecto de destello de luz de barrido */
+        .swipe-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 214, 0, 0.15), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s ease;
+        }
+        .swipe-glow:hover::before {
+            left: 150%;
+        }
+
+        /* Texto de Oro Líquido Metálico Animado */
+        .metal-gold-text {
+            background: linear-gradient(90deg, #FFFFFF, #FFD600, #FFE600, #A68000, #FFFFFF);
             background-size: 200% auto;
             color: transparent;
             -webkit-background-clip: text;
             background-clip: text;
-            animation: goldShine 3.5s linear infinite;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+            animation: metalShine 4s linear infinite;
         }
 
-        @keyframes goldShine {
-            to { background-position: 200% center; }
-        }
-
-        /* EFECTO ESPECIAL PARA LA PALABRA "ANDESSA" */
-        .highlight-andessa {
-            background: linear-gradient(90deg, #ffd700, #ff003c, #00f0ff, #ffd700);
+        /* Marca de Andessa con Efecto Holográfico de Alta Frecuencia */
+        .andessa-text-holo {
+            background: linear-gradient(90deg, #FFD600, #00E5FF, #FFD600, #00E5FF);
             background-size: 300% auto;
             color: transparent;
             -webkit-background-clip: text;
             background-clip: text;
-            animation: andessaShine 4s linear infinite;
-            text-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+            animation: holoShift 6s ease infinite;
             font-weight: 900;
-            display: inline-block;
         }
 
-        @keyframes andessaShine {
-            to { background-position: 300% center; }
+        @keyframes metalShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
-        /* Animación sutil para invitar a tocar la foto */
-        @keyframes gentle-shake {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            5% { transform: rotate(-5deg) scale(1.05); }
-            10% { transform: rotate(5deg) scale(1.05); }
-            15% { transform: rotate(-5deg) scale(1.05); }
-            20% { transform: rotate(0deg) scale(1); }
-        }
-        .animate-gentle-shake {
-            animation: gentle-shake 4s infinite ease-in-out;
-            cursor: pointer;
+        @keyframes holoShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Efecto de barra de progreso multicolor con ola súper suave sin cortes */
-        .wave-progress {
-            background: linear-gradient(90deg, #ff003c, #ff5e00, #ffd700, #00f0ff, #ff003c);
-            background-size: 400% 100%;
-            animation: waveMotion 6s infinite linear;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        /* Barra de progreso de flujo de energía cuántica */
+        .quantum-energy-flow {
+            background: linear-gradient(90deg, #947a00, #FFD600, #ffffff, #FFD600, #947a00);
+            background-size: 200% 100%;
+            animation: energyFlow 2.5s infinite linear;
         }
 
-        @keyframes waveMotion {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 400% 0%; }
+        @keyframes energyFlow {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
         }
 
-        /* Botón de Postulación de Alta Alerta (Rojo Vivo) */
-        .btn-postular-red {
-            background: linear-gradient(135deg, rgba(230,0,0,0.85) 0%, rgba(128,0,0,0.85) 100%);
-            backdrop-filter: blur(8px);
-            border: 2px solid #ff4d4d;
-            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.15);
-            animation: pulse-red-glow 2s infinite ease-in-out;
-            transition: all 0.2s ease;
+        /* Animación del ecualizador del controlador de música */
+        .eq-bar {
+            transform-origin: bottom;
+            animation: eqBounce 1s ease-in-out infinite alternate;
+        }
+        .eq-bar:nth-child(2) { animation-delay: 0.1s; animation-duration: 0.8s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.25s; animation-duration: 1.2s; }
+        .eq-bar:nth-child(4) { animation-delay: 0.15s; animation-duration: 0.9s; }
+
+        @keyframes eqBounce {
+            0% { transform: scaleY(0.2); }
+            100% { transform: scaleY(1); }
         }
 
-        .btn-postular-red:active, .btn-postular-red:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(255, 0, 60, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.3);
-            border-color: #ffffff;
-        }
-
-        @keyframes pulse-red-glow {
-            0% { box-shadow: 0 0 12px rgba(255, 0, 60, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(255, 0, 60, 0.7); }
-            100% { box-shadow: 0 0 12px rgba(255, 0, 60, 0.4); }
-        }
-
-        /* Botón azul tecnológico para IA */
-        .btn-ia-blue {
-            background: rgba(10, 20, 35, 0.6);
-            backdrop-filter: blur(10px);
-            border: 2px solid #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        .btn-ia-blue:hover, .btn-ia-blue:active {
-            border-color: #ffffff;
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
-        }
-
-        /* Botón Píldora Dorada */
-        .gold-pill-btn {
-            background: rgba(12, 12, 16, 0.65);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(255, 215, 0, 0.35);
-            border-radius: 9999px;
-            overflow: hidden;
-            position: relative;
-            transition: all 0.25s ease;
-        }
-
-        .gold-pill-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.25), transparent);
-            transform: skewX(-30deg);
-            transition: 0.75s ease;
-        }
-
-        .gold-pill-btn:hover::before, .gold-pill-btn:active::before {
-            left: 150%;
-        }
-
-        .gold-pill-btn:hover, .gold-pill-btn:active {
-            border-color: #ffd700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.35);
-            transform: translateY(-1px);
+        /* Remoción del sombreado de toque de celular */
+        * {
+            -webkit-tap-highlight-color: transparent;
         }
     </style>
 </head>
+<body class="relative min-h-screen flex flex-col items-center justify-start py-8 px-4 sm:px-6">
 
-<body class="relative flex items-center justify-center py-6 px-4">
-
-    <!-- CAPA INFERIOR: Sistema Hacker (Matriz Suave) y Corazones Flotantes -->
-    <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
-
-    <!-- Contenedor Principal -->
-    <main class="w-full max-w-md z-10 space-y-5">
+    <!-- MOTOR DE FONDO HOLOGRÁFICO 3D -->
+    <div class="scene">
+        <div class="data-layer layer-bg" id="layer1"></div>
+        <div class="data-layer layer-mid" id="layer2"></div>
+        <div class="data-layer layer-front" id="layer3"></div>
         
-        <!-- PANEL DE PERFIL -->
-        <header class="gold-card rounded-3xl overflow-hidden shadow-2xl h-[360px] relative flex flex-col justify-end p-0">
-            
-            <img src="https://i.postimg.cc/c4gjQN5x/FB-IMG-1779178194822.jpg" 
-                 alt="Fondo de Perfil - Roberth Coriza" 
-                 class="absolute inset-0 w-full h-full object-cover object-top opacity-100 pointer-events-none z-0"
-                 onerror="this.src='https://placehold.co/400x400/020203/ffd700?text=RC'">
-                 
-            <!-- DIFUMINACIÓN: Gradiente suave para legibilidad de textos inferior -->
-            <div class="absolute inset-0 bg-gradient-to-t from-[#020203] via-[#020203]/70 to-transparent pointer-events-none z-0"></div>
+        <canvas id="bokeh-canvas"></canvas>
+        <div class="vignette"></div>
+    </div>
 
-            <!-- Monitor de Estado -->
-            <div class="absolute top-4 right-4 z-10 flex items-center gap-1.5 bg-black/60 border border-gold/30 px-2 py-1 rounded-lg backdrop-blur-md shadow-lg">
-                <span class="text-[8px] font-display tracking-widest text-gold font-bold uppercase">Conexión_Segura</span>
-                <i class="fa-solid fa-shield text-[9px] text-gold animate-pulse"></i>
+    <!-- Contenedor Principal Adaptable -->
+    <main class="w-full max-w-md mx-auto space-y-6 z-10 relative">
+
+        <!-- CABECERA: Perfil Holográfico Digital Premium -->
+        <header class="cyber-glass-card rounded-[2.5rem] overflow-hidden relative flex flex-col justify-end min-h-[390px] p-6 group shadow-hologram">
+            
+            <!-- Imagen de Perfil de Alta Calidad -->
+            <img src="https://i.postimg.cc/c4gjQN5x/FB-IMG-1779178194822.jpg" 
+                 alt="Roberth Coriza" 
+                 class="absolute inset-0 w-full h-full object-cover object-top opacity-80 transition-transform duration-700 ease-out group-hover:scale-105"
+                 onerror="this.src='https://placehold.co/400x400/06060c/ffd600?text=RC'">
+            
+            <!-- Degradado cinematográfico de fusión Obsidian -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#05050a] via-[#05050a]/40 to-transparent z-0 pointer-events-none"></div>
+
+            <!-- Placa de Estado de Red Seguro -->
+            <div class="absolute top-5 right-5 z-10 flex items-center gap-2 bg-[#060612]/95 border border-gold/30 px-3 py-1.5 rounded-full backdrop-blur-md shadow-neon-gold">
+                <span class="w-2 h-2 rounded-full bg-[#00E5FF] animate-pulse"></span>
+                <span class="text-[8px] font-display tracking-[0.2em] text-gold font-black uppercase">Seguridad Encriptada</span>
             </div>
 
-            <div class="relative z-10 w-full p-5 flex items-end gap-3 pb-6">
+            <!-- Panel de Datos del Líder -->
+            <div class="relative z-10 space-y-4">
                 
-                <div class="relative w-[68px] h-[68px] shrink-0 animate-gentle-shake" onclick="AudioEngine.playClick()">
-                    <div class="absolute inset-0 rounded-xl bg-gradient-to-tr from-gold via-gold-light to-gold-dark animate-pulse p-[2px] shadow-[0_0_15px_rgba(255,215,0,0.4)]">
-                        <div class="w-full h-full bg-[#030305] rounded-xl"></div>
+                <div class="flex items-center gap-4">
+                    <!-- Logotipo Flotante de ANDESSA con aura dorada -->
+                    <div class="relative w-16 h-16 shrink-0 cursor-pointer" onclick="UIEngine.triggerInteraction()">
+                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-gold via-white to-gold-dark p-[1.5px] shadow-neon-gold animate-pulse">
+                            <div class="w-full h-full bg-slate-950 rounded-[14px]"></div>
+                        </div>
+                        <img src="https://i.postimg.cc/sXtWq85G/Diseno-sin-titulo-(1).jpg" 
+                             alt="Andessa Logo" 
+                             onerror="this.src='https://placehold.co/150x150/05050a/ffd600?text=Andessa'"
+                             class="absolute inset-[1.5px] w-[61px] h-[61px] rounded-xl object-cover">
                     </div>
-                    <img src="https://i.postimg.cc/sXtWq85G/Diseno-sin-titulo-(1).jpg" 
-                         alt="Andessa Logotipo" 
-                         onerror="this.src='https://placehold.co/150x150/020203/ffd700?text=Andessa'"
-                         class="absolute inset-[2px] w-[64px] h-[64px] rounded-lg object-cover z-10">
+
+                    <!-- Datos Corporativos -->
+                    <div class="space-y-0.5">
+                        <div class="inline-flex items-center gap-1.5 text-[8px] text-gold font-display tracking-[0.2em] font-black bg-gold/15 border border-gold/40 px-2.5 py-0.5 rounded-md">
+                            PREMIUM PARTNER
+                        </div>
+                        <h1 class="font-display text-2xl font-black tracking-wide leading-none text-white">
+                            ROBERTH CORIZA
+                        </h1>
+                        <p class="text-xs text-white/90 font-semibold tracking-wide">
+                            LIDERANDO EQUIPOS EN <span class="andessa-text-holo">ANDESSA</span>
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="space-y-1 mb-0.5">
-                    <div class="flex items-center gap-1 text-[8px] text-gold/90 font-display tracking-widest uppercase font-black bg-yellow-500/15 px-2 py-0.5 rounded border border-yellow-500/30 w-fit">
-                        <i class="fa-solid fa-circle text-[5px] text-green-500 animate-ping mr-1"></i> ROBERTH_CORIZA_HUB
-                    </div>
-                    
-                    <h1 class="font-display text-[22px] font-black tracking-wide gold-text-shine uppercase leading-none">
-                        ROBERTH CORIZA
-                    </h1>
-                    
-                    <p class="text-white/95 text-[10px] font-bold font-sans tracking-wide uppercase leading-tight drop-shadow-md">
-                        CUMPLIENDO METAS EN <span class="highlight-andessa">ANDESSA</span>
-                    </p>
-                </div>
+                <!-- Frase inspiracional corporativa de alta confiabilidad -->
+                <p class="text-[11px] text-white/80 italic border-l-2 border-gold pl-3 py-1 font-light leading-relaxed bg-[#05050a]/60 rounded-r-xl p-2.5">
+                    "Ayudando a emprendedores con hambre de éxito a crear fuentes de ingresos digitales estables y escalables."
+                </p>
 
             </div>
         </header>
 
-        <!-- PANEL DE POSTULACIÓN -->
-        <section class="gold-card rounded-2xl p-5 space-y-4 relative overflow-hidden">
-            <div class="text-center space-y-1">
-                <span class="text-[10px] font-display text-gold tracking-[0.25em] font-black uppercase">
-                    <i class="fa-solid fa-bullhorn mr-1 text-gold animate-bounce"></i> Convocatoria de Éxito
+        <!-- PANEL DE ACCIÓN: Convocatoria Digital Activa de Alta Conversión -->
+        <section class="cyber-glass-card rounded-3xl p-6 space-y-5 relative overflow-hidden shadow-neon-gold border-gold/40">
+            
+            <div class="text-center space-y-1.5">
+                <span class="text-[9px] font-display text-gold tracking-[0.25em] font-extrabold uppercase block">
+                    <i class="fa-solid fa-atom mr-1.5 text-gold animate-spin-slow"></i>CUPOS LIMITADOS DISPONIBLES
                 </span>
-                <h3 class="font-display text-lg font-black text-white tracking-wide uppercase leading-tight">
-                    POSTULA PARA SER UN EMPRENDEDOR EXITOSO EN <span class="highlight-andessa">ANDESSA</span>
+                <h3 class="font-display text-lg font-black text-white tracking-wide uppercase leading-snug">
+                    POSTULA PARA INICIAR TU EMBUDO DE VENTAS EN <span class="andessa-text-holo">ANDESSA</span>
                 </h3>
             </div>
 
-            <!-- Pagorasan ti Temporizador -->
-            <div class="grid grid-cols-3 gap-2 text-center">
-                <div class="bg-black/20 border border-gold/20 rounded-xl p-2 relative backdrop-blur-sm">
-                    <div id="daysBox" class="font-display text-2xl font-black text-gold">00</div>
-                    <div class="text-[8px] tracking-widest text-white/70 uppercase font-bold">Días</div>
+            <!-- Temporizador Digital de Presión de Vencimiento -->
+            <div class="grid grid-cols-3 gap-3">
+                <div class="bg-black/60 border border-gold/20 rounded-2xl p-3 text-center backdrop-blur-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+                    <div id="days" class="font-display text-2xl font-black text-gold">00</div>
+                    <div class="text-[8px] tracking-widest text-white/60 uppercase font-bold mt-0.5">Días</div>
                 </div>
-                <div class="bg-black/20 border border-gold/20 rounded-xl p-2 backdrop-blur-sm">
-                    <div id="hoursBox" class="font-display text-2xl font-black text-gold">00</div>
-                    <div class="text-[8px] tracking-widest text-white/70 uppercase font-bold">Horas</div>
+                <div class="bg-black/60 border border-gold/20 rounded-2xl p-3 text-center backdrop-blur-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+                    <div id="hours" class="font-display text-2xl font-black text-gold">00</div>
+                    <div class="text-[8px] tracking-widest text-white/60 uppercase font-bold mt-0.5">Horas</div>
                 </div>
-                <div class="bg-black/20 border border-gold/20 rounded-xl p-2 backdrop-blur-sm">
-                    <div id="minsBox" class="font-display text-2xl font-black text-gold">00</div>
-                    <div class="text-[8px] tracking-widest text-white/70 uppercase font-bold">Minutos</div>
-                </div>
-            </div>
-
-            <div class="space-y-1.5">
-                <div class="flex justify-between items-center text-[10px] font-mono tracking-widest text-white/90">
-                    <span class="uppercase font-bold"><i class="fa-solid fa-users text-gold"></i> Cupos Disponibles</span>
-                    <span id="percentLabel" class="text-gold font-black drop-shadow-md">0%</span>
-                </div>
-                <div class="w-full bg-black/30 h-4 rounded-full overflow-hidden border border-white/20 p-[1.5px] backdrop-blur-sm">
-                    <div id="progressBar" class="wave-progress h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
+                <div class="bg-black/60 border border-gold/20 rounded-2xl p-3 text-center backdrop-blur-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+                    <div id="minutes" class="font-display text-2xl font-black text-gold">00</div>
+                    <div class="text-[8px] tracking-widest text-white/60 uppercase font-bold mt-0.5">Minutos</div>
                 </div>
             </div>
 
-            <!-- Botón de Postulación de WhatsApp -->
+            <!-- Indicador de Cupos con barra de flujo de energía de alta fidelidad -->
+            <div class="space-y-2">
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-white/80 font-bold tracking-wide flex items-center gap-1.5">
+                        <i class="fa-solid fa-signal text-gold animate-pulse"></i> Tasa de Disponibilidad
+                    </span>
+                    <span id="spotsLeft" class="text-gold font-black font-display text-sm tracking-wide">6 Cupos Libres</span>
+                </div>
+                <div class="w-full bg-slate-950 h-3.5 rounded-full overflow-hidden border border-gold/30 p-[1.5px]">
+                    <div id="spotProgress" class="quantum-energy-flow h-full rounded-full transition-all duration-1000 ease-out shadow-neon-gold" style="width: 75%"></div>
+                </div>
+            </div>
+
+            <!-- Botón de Postulación de WhatsApp (Verde Esmeralda Confiable con Estela Dinámica) -->
             <a href="https://wa.me/59175954334?text=HOLA%20ROBERTH%20C.%20ME%20ENCANTARIA%20POSTULAR%20A%20LA%20EMPRESA%20ANDESSA%20PARA%20SER%20PARTE%20DE%20LA%20EMPRESA" 
                target="_blank" 
                onmouseover="AudioEngine.playHover()"
                onclick="AudioEngine.playClick()"
-               class="btn-postular-red rounded-xl p-4 flex items-center justify-center group cursor-pointer">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-[28px] text-white shadow-lg">
-                        <i class="fa-brands fa-whatsapp animate-pulse"></i>
+               class="relative flex items-center justify-between bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-2xl p-4 shadow-lg group transition-all duration-300 transform active:scale-95 overflow-hidden border border-emerald-400/40">
+                
+                <!-- Destello de escaneo de izquierda a derecha -->
+                <div class="absolute inset-0 w-1/2 h-full bg-white/10 skew-x-[-25deg] -translate-x-[150%] group-hover:animate-[swipeBtn_2s_infinite]"></div>
+
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl text-white shadow-md">
+                        <i class="fa-brands fa-whatsapp"></i>
                     </div>
                     <div class="text-left">
-                        <h4 class="font-display text-base font-black text-white tracking-wider">POSTULAR A <span class="highlight-andessa">ANDESSA</span></h4>
-                        <p class="text-[10px] text-white/90">Mensaje directo a WhatsApp</p>
+                        <span class="font-display text-sm font-black tracking-wider block">POSTULACIÓN DE NEGOCIOS</span>
+                        <span class="text-[9px] text-emerald-100 tracking-wide font-light">Escríbeme para agendar entrevista</span>
                     </div>
                 </div>
+                <i class="fa-solid fa-arrow-right text-white/95 group-hover:translate-x-1.5 transition-transform relative z-10"></i>
             </a>
+
         </section>
 
-        <!-- SECCIÓN DE ENLACES EXTERNOS -->
-        <div class="flex flex-col gap-3">
-            
+        <!-- SECCIÓN DE ENLACES EXTERNOS INTERACTIVOS -->
+        <div class="flex flex-col gap-4">
+
+            <!-- Enlace 1: YouTube Playlist (Amatista Mágica) -->
             <a href="https://www.youtube.com/watch?v=L25GY7OG8Iw&list=PL_IPfui07i_mVBWVTHw7Y7I3DY6FGMoQ1" 
                target="_blank" 
                onmouseover="AudioEngine.playHover()"
                onclick="AudioEngine.playClick()"
-               class="gold-card rounded-2xl p-3 flex items-center justify-between group">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-gold-dark to-gold flex items-center justify-center shadow-[0_0_10px_rgba(255,215,0,0.3)] group-hover:rotate-12 transition-transform">
-                        <i class="fa-brands fa-youtube text-black text-base"></i>
+               class="relative rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-indigo-500/25 transition-all duration-300 hover:scale-[1.02] hover:border-indigo-400/50 bg-[#0f0a1c]/80"
+               style="box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#818cf8_1px,transparent_1px)] bg-[size:12px_12px]"></div>
+                
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-rose-600 to-indigo-600 flex items-center justify-center text-lg text-white shadow-md transition-transform group-hover:rotate-6">
+                        <i class="fa-brands fa-youtube"></i>
                     </div>
                     <div>
-                        <div class="flex items-center gap-1.5 text-gold text-[9px] font-display tracking-widest uppercase mb-0.5">
-                            <i class="fa-solid fa-music text-[8px]"></i> Playlist de Poder
+                        <div class="flex items-center gap-1 text-indigo-300 text-[8px] font-display tracking-widest uppercase font-black">
+                            <i class="fa-solid fa-fire text-[8px] animate-pulse"></i> Playlist de Poder
                         </div>
-                        <h2 class="font-display text-base text-white font-bold tracking-wide group-hover:text-gold transition-colors">Playlist Favorita 🎵</h2>
+                        <h2 class="font-display text-sm text-white font-bold tracking-wide group-hover:text-gold transition-colors">
+                            Hábitos de Éxito Diario 🎵
+                        </h2>
                     </div>
                 </div>
-                <div class="w-8 h-8 rounded-lg border border-white/20 text-white flex items-center justify-center group-hover:border-gold group-hover:bg-gold/20 transition-all">
-                    <i class="fa-solid fa-play text-[10px] ml-0.5"></i>
+                <div class="w-8 h-8 rounded-lg border border-white/10 text-white/40 flex items-center justify-center group-hover:border-gold/40 group-hover:text-gold group-hover:bg-gold/5 transition-all z-10">
+                    <i class="fa-solid fa-play text-xs ml-0.5"></i>
                 </div>
             </a>
 
+            <!-- Enlace 2: Telegram VIP (Zafiro Cobalto) -->
             <a href="https://t.me/+6fTLnccdPIw5OWZh" 
                target="_blank" 
                onmouseover="AudioEngine.playHover()"
                onclick="AudioEngine.playClick()"
-               class="gold-pill-btn w-full flex items-center justify-between p-2 pr-5 group">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#1f93e0] to-[#34b3f3] text-white flex items-center justify-center text-lg">
+               class="relative rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-sky-500/25 transition-all duration-300 hover:scale-[1.02] hover:border-sky-400/50 bg-[#040f1a]/80"
+               style="box-shadow: 0 10px 25px rgba(56, 189, 248, 0.1);">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] bg-[size:12px_12px]"></div>
+
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-lg text-white shadow-md transition-transform group-hover:rotate-6">
                         <i class="fa-brands fa-telegram"></i>
                     </div>
-                    <span class="font-display font-black text-sm uppercase tracking-[0.15em] text-white/90 group-hover:text-gold transition-colors drop-shadow-md">GRUPO VIP TELEGRAM</span>
+                    <div>
+                        <div class="text-sky-300 text-[8px] font-display tracking-widest uppercase font-black">
+                            COMUNIDAD VIP
+                        </div>
+                        <h2 class="font-display text-sm text-white font-bold tracking-wide group-hover:text-gold transition-colors">
+                            Grupo VIP Telegram 💎
+                        </h2>
+                    </div>
                 </div>
-                <i class="fa-solid fa-chevron-right text-white/50 group-hover:text-gold group-hover:translate-x-1 transition-all"></i>
+                <i class="fa-solid fa-chevron-right text-white/40 group-hover:translate-x-1 group-hover:text-gold transition-all z-10"></i>
             </a>
 
-            <button onclick="solicitarAcceso('https://t.me/+STA_3DJm75U3Yzcx', 'Biblioteca Virtual')" 
+            <!-- Enlace 3: Biblioteca Virtual (Ámbar de Seguridad) -->
+            <button onclick="AccessControl.request('https://t.me/+STA_3DJm75U3Yzcx', 'Biblioteca Virtual')" 
                     onmouseover="AudioEngine.playHover()"
-                    class="gold-pill-btn w-full flex items-center justify-between p-2 pr-5 group cursor-pointer text-left">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-amber-500/10 border border-gold/40 text-gold flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-lock"></i>
+                    class="relative w-full rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-gold/20 transition-all duration-300 hover:scale-[1.02] hover:border-gold/50 bg-[#140f06]/80 text-left"
+                    style="box-shadow: 0 10px 25px rgba(245, 158, 11, 0.05);">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] bg-[size:12px_12px]"></div>
+
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-gold/30 text-gold flex items-center justify-center text-lg shadow-inner group-hover:bg-gold/15 transition-all">
+                        <i class="fa-solid fa-fingerprint"></i>
                     </div>
                     <div>
-                        <span class="font-display font-bold text-sm uppercase tracking-[0.15em] text-white/95 drop-shadow-md">BIBLIOTECA VIRTUAL</span>
-                        <div class="text-[9px] text-gold/90 font-mono tracking-widest uppercase">ACCESO PROTEGIDO 🔒</div>
+                        <div class="text-amber-400 text-[8px] font-display tracking-widest uppercase font-black flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Acceso Protegido
+                        </div>
+                        <h2 class="font-display text-sm text-white font-bold tracking-wide">
+                            Biblioteca Virtual Exclusiva
+                        </h2>
                     </div>
                 </div>
-                <i class="fa-solid fa-key text-gold/60 group-hover:text-gold group-hover:scale-110 transition-all"></i>
+                <div class="w-8 h-8 rounded-lg border border-white/5 text-white/30 flex items-center justify-center group-hover:border-amber-500/30 group-hover:text-amber-400 transition-all z-10">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
             </button>
 
-            <button onclick="solicitarAcceso('https://t.me/+1C81WCW3CLU5NjI5', 'Canal Privado')" 
+            <!-- Enlace 4: Canal Privado (Esmeralda Premium) -->
+            <button onclick="AccessControl.request('https://t.me/+1C81WCW3CLU5NjI5', 'Canal Privado')" 
                     onmouseover="AudioEngine.playHover()"
-                    class="gold-pill-btn w-full flex items-center justify-between p-2 pr-5 group cursor-pointer text-left">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-amber-500/10 border border-gold/40 text-gold flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-lock-open"></i>
+                    class="relative w-full rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-emerald-500/20 transition-all duration-300 hover:scale-[1.02] hover:border-emerald-500/50 bg-[#06120e]/80 text-left"
+                    style="box-shadow: 0 10px 25px rgba(16, 185, 129, 0.05);">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] bg-[size:12px_12px]"></div>
+
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-lg shadow-inner group-hover:bg-emerald-500/15 transition-all">
+                        <i class="fa-solid fa-key"></i>
                     </div>
                     <div>
-                        <span class="font-display font-bold text-sm uppercase tracking-[0.15em] text-white/95 drop-shadow-md">CANAL PRIVADO</span>
-                        <div class="text-[9px] text-gold/90 font-mono tracking-widest uppercase">REQUERIDA CLAVE 🔒</div>
+                        <div class="text-emerald-400 text-[8px] font-display tracking-widest uppercase font-black flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Clave Requerida
+                        </div>
+                        <h2 class="font-display text-sm text-white font-bold tracking-wide">
+                            Canal Privado de Socios
+                        </h2>
                     </div>
                 </div>
-                <i class="fa-solid fa-key text-gold/60 group-hover:text-gold group-hover:scale-110 transition-all"></i>
+                <div class="w-8 h-8 rounded-lg border border-white/5 text-white/30 flex items-center justify-center group-hover:border-emerald-500/30 group-hover:text-emerald-400 transition-all z-10">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
             </button>
 
-            <button onclick="solicitarAcceso('https://t.me/+1C81WCW3CLU5NjI5', 'Herramientas IA')" 
+            <!-- Enlace 5: Herramientas IA (Cian Eléctrico y Violeta Cósmico) con logotipo IA de Robot -->
+            <button onclick="AccessControl.request('https://t.me/+1C81WCW3CLU5NjI5', 'Herramientas IA')" 
                     onmouseover="AudioEngine.playHover()"
-                    class="btn-ia-blue rounded-2xl w-full flex items-center justify-between p-3 pr-5 group cursor-pointer text-left">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-black/40 border border-cyber-blue/60 text-cyber-blue flex items-center justify-center text-lg shadow-inner">
-                        <i class="fa-solid fa-robot"></i>
+                    class="relative w-full rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-fuchsia-500/20 transition-all duration-300 hover:scale-[1.02] hover:border-fuchsia-500/50 bg-[#120517]/80 text-left"
+                    style="box-shadow: 0 10px 25px rgba(217, 70, 239, 0.05);">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d946ef_1px,transparent_1px)] bg-[size:12px_12px]"></div>
+
+                <div class="flex items-center gap-4 relative z-10">
+                    <!-- Icono Oficial de Robot de IA en cian brillante -->
+                    <div class="w-11 h-11 rounded-xl bg-fuchsia-500/10 border border-fuchsia-400/30 text-fuchsia-400 flex items-center justify-center text-lg shadow-inner group-hover:bg-fuchsia-500/15 transition-all">
+                        <i class="fa-solid fa-robot text-[#00E5FF]"></i>
                     </div>
                     <div>
-                        <span class="font-display font-bold text-sm uppercase tracking-[0.15em] text-white drop-shadow-md">HERRAMIENTAS IA</span>
-                        <div class="text-[9px] text-[#00f0ff] font-mono tracking-wider">PROTEGIDO CON CLAVE 🤖</div>
+                        <div class="text-fuchsia-400 text-[8px] font-display tracking-widest uppercase font-black flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-ping"></span> SISTEMA IA
+                        </div>
+                        <h2 class="font-display text-sm text-white font-bold tracking-wide">
+                            Herramientas de IA Integradas
+                        </h2>
                     </div>
                 </div>
-                <i class="fa-solid fa-shield-halved text-[#00f0ff] group-hover:scale-125 transition-transform"></i>
+                <div class="w-8 h-8 rounded-lg border border-fuchsia-500/30 text-fuchsia-400/50 flex items-center justify-center group-hover:bg-fuchsia-500/10 transition-all z-10">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
             </button>
 
         </div>
 
-        <!-- PANEL DE UBICACIÓN -->
-        <section class="gold-card rounded-2xl p-5 space-y-4 relative overflow-hidden">
+        <!-- SECCIÓN: Ubicación Física de la Sede -->
+        <section class="cyber-glass-card rounded-3xl p-6 space-y-4 relative overflow-hidden">
+            
             <div class="text-center space-y-1">
-                <span class="text-[10px] font-display text-gold tracking-[0.25em] font-black uppercase">
-                    <i class="fa-solid fa-map-location-dot mr-1 text-gold"></i> Sede Oficial
+                <span class="text-[9px] font-display text-gold tracking-[0.25em] font-extrabold uppercase">
+                    <i class="fa-solid fa-map-location-dot mr-1.5 text-gold animate-bounce"></i>UBICACIÓN ESTRATÉGICA
                 </span>
-                <h3 class="font-display text-lg font-black text-white tracking-wide uppercase leading-tight">
-                    PUNTO DE CAPACITACIÓN
+                <h3 class="font-display text-base font-black text-white tracking-wide uppercase">
+                    PUNTO OFICIAL DE CAPACITACIÓN
                 </h3>
             </div>
 
-            <!-- Mapa Imagen (Ajustado para verse completo) -->
-            <div class="w-full rounded-xl overflow-hidden border border-gold/30 shadow-[0_0_15px_rgba(255,215,0,0.15)] relative bg-black/50">
-                <img src="https://i.postimg.cc/HLZg31bH/Diseno-sin-titulo-(2).jpg" alt="Mapa Ubicación" class="w-full h-auto object-contain">
-                <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
+            <!-- Mapa del local -->
+            <div class="w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative aspect-[16/10] bg-slate-950">
+                <img src="https://i.postimg.cc/HLZg31bH/Diseno-sin-titulo-(2).jpg" 
+                     alt="Sede Central" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
             </div>
 
-            <!-- Botón GPS -->
+            <!-- Botón de GPS -->
             <a href="https://maps.app.goo.gl/mJ4LUoGJe7DwuQwC7" 
                target="_blank" 
                onmouseover="AudioEngine.playHover()"
                onclick="AudioEngine.playClick()"
-               class="gold-pill-btn w-full flex items-center justify-between p-2 pr-5 group">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-green-600 to-emerald-400 border border-green-400/50 text-white flex items-center justify-center text-xl shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+               class="relative rounded-2xl p-3.5 flex items-center justify-between group overflow-hidden border border-sky-500/20 transition-all duration-300 hover:scale-[1.02] hover:border-sky-400/50 bg-[#080d1a]/90 shadow-lg">
+                <div class="flex items-center gap-3 relative z-10">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-teal-400 text-white flex items-center justify-center shadow-lg">
                         <i class="fa-solid fa-location-arrow animate-pulse"></i>
                     </div>
-                    <span class="font-display font-black text-sm uppercase tracking-[0.1em] text-white/90 group-hover:text-gold transition-colors drop-shadow-md">ABRIR EN GPS</span>
+                    <div class="text-left">
+                        <span class="font-display font-black text-xs uppercase tracking-wider text-white block">Sede Imparables Bolivia</span>
+                        <span class="text-[8px] text-white/50">Inicia ruta por GPS</span>
+                    </div>
                 </div>
-                <i class="fa-solid fa-chevron-right text-white/50 group-hover:text-gold group-hover:translate-x-1 transition-all"></i>
+                <i class="fa-solid fa-chevron-right text-white/40 group-hover:translate-x-1 group-hover:text-sky-400 transition-all z-10"></i>
             </a>
         </section>
 
-        <footer class="text-center mt-6 pb-6">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-500/10 border border-gold/30 backdrop-blur-md shadow-[0_0_10px_rgba(255,215,0,0.1)]">
-                <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>
-                <p class="text-gold text-[9px] font-display tracking-widest uppercase">SISTEMA IMPARABLES LATAM <i class="fa-solid fa-bolt ml-1"></i></p>
+        <!-- FOOTER: Consola de Marcas -->
+        <footer class="text-center pt-4 pb-12">
+            <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-black/80 border border-gold/20 shadow-lg backdrop-blur-xl">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
+                </span>
+                <p class="text-gold text-[8px] font-display tracking-[0.25em] font-extrabold uppercase">
+                    SISTEMA IMPARABLES LATAM &copy; 2026
+                </p>
             </div>
         </footer>
 
     </main>
 
-    <!-- CAPA SUPERIOR: Corazones Táctiles Interactivos -->
-    <canvas id="fgCanvas" class="fixed top-0 left-0 w-full h-full z-50 pointer-events-none"></canvas>
-
-    <!-- MODAL DE CLAVE DE ACCESO -->
-    <div id="passwordModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300 p-4">
-        <div class="w-full max-w-xs gold-card rounded-3xl p-5 space-y-5 text-center relative">
-
+    <!-- MODAL DE ACCESO PROTEGIDO CON TECLADO BIOMÉTRICO (ALERTA ROJO CYBER) -->
+    <div id="securityModal" class="fixed inset-0 bg-black/98 backdrop-blur-xl z-50 flex items-center justify-center hidden opacity-0 transition-all duration-300 p-4">
+        <div class="w-full max-w-sm rounded-[2.5rem] p-6 space-y-6 text-center border border-red-500/30 shadow-[0_0_50px_rgba(255,0,0,0.15)] relative bg-[#090202]/95">
+            
             <div class="space-y-2">
-                <div class="w-14 h-14 bg-gold/10 border border-gold/40 rounded-full flex items-center justify-center text-gold text-xl mx-auto shadow-[0_0_15px_rgba(255,215,0,0.15)] animate-pulse">
+                <!-- Icono de Llave de Seguridad Animado -->
+                <div class="w-16 h-16 bg-red-500/10 border border-red-500/30 rounded-full flex items-center justify-center text-red-500 text-xl mx-auto shadow-inner animate-pulse">
                     <i class="fa-solid fa-key"></i>
                 </div>
-                <h3 class="font-display text-xl font-bold text-white uppercase tracking-wider">Acceso Protegido</h3>
-                <p class="text-xs text-white/70 leading-normal">Ingresa la clave para desbloquear: <br><strong class="text-gold" id="modalTargetName">Biblioteca</strong></p>
+                <h3 class="font-display text-base font-black text-white uppercase tracking-widest">SISTEMA CONTROL DE ACCESO</h3>
+                <p class="text-xs text-white/70">Introduce la firma digital del recurso:<br><strong class="text-gold" id="modalResourceName">Acceso VIP</strong></p>
             </div>
 
-            <div class="space-y-3">
-                <input type="password" id="accessPasswordInput" 
-                       placeholder="Escribe la clave aquí..." 
-                       class="w-full px-3 py-2.5 bg-black/60 backdrop-blur-sm border border-gold/40 rounded-xl text-center text-white text-base tracking-widest focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold font-mono uppercase">
+            <!-- Campo de Clave Digital -->
+            <div class="space-y-4">
+                <input type="password" id="inputPass" readonly
+                       placeholder="••••••••••••••" 
+                       class="w-full py-3 bg-black/70 border border-red-500/30 rounded-2xl text-center text-red-500 text-xl tracking-[0.25em] font-mono focus:outline-none focus:border-red-500 shadow-inner">
                 
-                <p id="errorMessage" class="text-red-500 text-xs hidden font-bold tracking-wider">❌ CLAVE INCORRECTA. INTENTA DE NUEVO.</p>
+                <p id="errorAlert" class="text-red-500 text-[9px] font-bold tracking-widest opacity-0 transition-opacity uppercase duration-200">
+                    ⚠️ FIRMA DIGITAL NO VÁLIDA. INTÉNTELO DE NUEVO.
+                </p>
+
+                <!-- Teclado Digital Interactivo de Seguridad -->
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="AccessControl.pressKey('I')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">I</button>
+                    <button onclick="AccessControl.pressKey('N')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">N</button>
+                    <button onclick="AccessControl.pressKey('P')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">P</button>
+                    <button onclick="AccessControl.pressKey('A')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">A</button>
+                    <button onclick="AccessControl.pressKey('R')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">R</button>
+                    <button onclick="AccessControl.pressKey('A')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">A</button>
+                    <button onclick="AccessControl.pressKey('B')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">B</button>
+                    <button onclick="AccessControl.pressKey('L')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">L</button>
+                    <button onclick="AccessControl.pressKey('E')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">E</button>
+                    <button onclick="AccessControl.pressKey('S')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">S</button>
+                    <button onclick="AccessControl.pressKey('T')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">T</button>
+                    <button onclick="AccessControl.pressKey('M')" class="bg-white/5 border border-white/5 p-3 rounded-xl text-xs font-mono font-black hover:bg-gold/15 hover:border-gold/30 hover:text-gold active:scale-95 transition-all text-white">M</button>
+                </div>
 
                 <div class="flex gap-2 pt-2">
-                    <button onclick="closeModal()" class="w-1/2 py-2 rounded-lg border border-white/20 text-white/80 hover:bg-white/10 font-display tracking-wider text-[10px] uppercase cursor-pointer backdrop-blur-md">
-                        Cancelar
+                    <button onclick="AccessControl.clear()" class="w-1/2 py-2.5 rounded-xl border border-white/10 text-white/70 hover:bg-white/5 text-[10px] tracking-widest uppercase font-bold active:scale-95 transition-all">
+                        Limpiar
                     </button>
-                    <button onclick="verificarAcceso()" class="w-1/2 py-2 rounded-lg bg-gradient-to-r from-gold-dark to-gold text-black font-display font-black tracking-wider text-[10px] uppercase hover:brightness-110 cursor-pointer shadow-[0_0_10px_rgba(255,215,0,0.3)]">
-                        Desbloquear
+                    <button onclick="AccessControl.close()" class="w-1/2 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500 text-[10px] tracking-widest uppercase font-bold active:scale-95 transition-all">
+                        Cerrar
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CONTROLES FLOTANTES DE MÚSICA -->
-    <div id="musicContainer" class="fixed bottom-4 left-4 z-40">
-        <button id="musicToggle" onclick="toggleAudio()" class="w-10 h-10 bg-black/80 backdrop-blur-md border-2 border-gold rounded-full flex items-center justify-center text-gold shadow-[0_0_15px_rgba(255,215,0,0.4)] cursor-pointer hover:scale-110 transition-all">
-            <i id="musicIcon" class="fa-solid fa-volume-xmark text-sm"></i>
+    <!-- REPRODUCTOR DE MÚSICA PREMIUM Y VISUALIZADOR DE ONDAS -->
+    <div id="audioController" class="fixed bottom-5 left-5 z-40 flex items-center gap-3">
+        <button id="audioTrigger" onclick="AudioEngine.toggleBackgroundMusic()" class="w-12 h-12 bg-black/90 border-2 border-gold rounded-full flex items-center justify-center text-gold shadow-neon-gold cursor-pointer hover:scale-105 active:scale-95 transition-all backdrop-blur-md">
+            <i id="audioStatusIcon" class="fa-solid fa-volume-xmark text-sm"></i>
         </button>
+        <!-- Mini-Visualizador de Ondas de Música -->
+        <div id="audioVisualizer" class="hidden flex items-end gap-[3px] h-6 px-3 py-1 bg-black/85 border border-white/10 rounded-full backdrop-blur-md shadow-neon-cyan">
+            <span class="eq-bar w-[2px] h-full bg-gold rounded-full"></span>
+            <span class="eq-bar w-[2px] h-4 bg-gold rounded-full"></span>
+            <span class="eq-bar w-[2px] h-full bg-gold rounded-full"></span>
+            <span class="eq-bar w-[2px] h-3 bg-gold rounded-full"></span>
+        </div>
     </div>
 
-    <!-- Música de fondo optimizada (Cambio a raw=1 para streaming directo) -->
-    <audio id="bgMusic" loop preload="auto">
+    <!-- Audio Principal (Optimizado con Dropbox Raw Directo) -->
+    <audio id="bgMusicElement" loop preload="auto">
         <source src="https://www.dropbox.com/scl/fi/sm7gtduc8eamj0c4bnryn/Alok_-Alan-Walker-Headlights-Lyrics-ft.-KIDDO-MP3_160K.mp3?rlkey=turyzxelynu77zog74kb1oajj&st=gwqevrxf&raw=1" type="audio/mpeg">
     </audio>
 
     <script>
+        // --- CONFIGURACIÓN DE DATOS DEL FONDO 3D ---
+        const symbols = ['0', '1', '101', 'F1', 'X9', '::', '*', '#', 'CYBER', 'ANDESSA'];
+        const dataColors = ['color-gold-stream', 'color-cyan-stream', 'color-white-stream'];
+        
+        // Genera una cadena aleatoria de datos
+        function generateDataString(length) {
+            let str = '';
+            for(let i=0; i<length; i++) {
+                str += symbols[Math.floor(Math.random() * symbols.length)] + '\n';
+            }
+            return str;
+        }
+
+        // Poblar las capas con columnas de datos
+        function populateLayer(layerId, colCount, speedMultiplier) {
+            const layer = document.getElementById(layerId);
+            if (!layer) return;
+            for(let i = 0; i < colCount; i++) {
+                const col = document.createElement('div');
+                col.className = `column ${dataColors[Math.floor(Math.random() * dataColors.length)]}`;
+                col.innerText = generateDataString(40);
+                
+                // Variación de velocidad y posición
+                const duration = (Math.random() * 20 + 25) * speedMultiplier;
+                const delay = Math.random() * -30;
+                
+                col.style.animationDuration = `${duration}s`;
+                col.style.animationDelay = `${delay}s`;
+                
+                layer.appendChild(col);
+            }
+        }
+
+        // --- SISTEMA DE PARTÍCULAS BOKEH ---
+        const canvas = document.getElementById('bokeh-canvas');
+        let ctx = null;
+        let particles = [];
+
+        function resize() {
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.r = Math.random() * 10 + 3; // Tamaño adaptado para móviles
+                this.speedX = (Math.random() - 0.5) * 0.15; // Movimiento lento
+                this.speedY = (Math.random() - 0.5) * 0.15;
+                this.alpha = Math.random() * 0.3 + 0.1;
+                
+                const colorTypes = [
+                    `rgba(255, 214, 0, ${this.alpha})`,
+                    `rgba(0, 229, 255, ${this.alpha})`,
+                    `rgba(255, 255, 255, ${this.alpha})`
+                ];
+                this.color = colorTypes[Math.floor(Math.random() * colorTypes.length)];
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if(this.x < 0 || this.x > window.innerWidth) this.speedX *= -1;
+                if(this.y < 0 || this.y > window.innerHeight) this.speedY *= -1;
+            }
+            
+            draw() {
+                if (!ctx) return;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initBackground3D() {
+            populateLayer('layer1', 30, 2.4); // Fondo lento
+            populateLayer('layer2', 20, 1.8); // Medio
+            populateLayer('layer3', 10, 1.3); // Frente rápido
+
+            if (canvas) {
+                ctx = canvas.getContext('2d');
+                resize();
+                window.addEventListener('resize', resize);
+                
+                for(let i=0; i<25; i++) {
+                    particles.push(new Particle());
+                }
+                
+                animateBokeh();
+            }
+        }
+
+        function animateBokeh() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateBokeh);
+        }
+
         // MOTOR DE AUDIO (Sintetizador Web Audio API)
         const AudioEngine = {
             ctx: null,
+            bgMusic: document.getElementById('bgMusicElement'),
+            btnIcon: document.getElementById('audioStatusIcon'),
+            wave: document.getElementById('audioVisualizer'),
+            isStarted: false,
+
             init() {
                 if (!this.ctx) {
                     this.ctx = new (window.AudioContext || window.webkitAudioContext)();
                 }
             },
+
+            playOscillator(freqStart, freqEnd, duration, type = 'sine', vol = 0.05) {
+                this.init();
+                if (!this.ctx) return;
+                try {
+                    let osc = this.ctx.createOscillator();
+                    let gain = this.ctx.createGain();
+                    
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(freqStart, this.ctx.currentTime);
+                    if (freqEnd) {
+                        osc.frequency.exponentialRampToValueAtTime(freqEnd, this.ctx.currentTime + duration);
+                    }
+                    
+                    gain.gain.setValueAtTime(vol, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+                    
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + duration);
+                } catch(e) {
+                    console.warn("Contexto de Audio restringido");
+                }
+            },
+
             playHover() {
-                this.init();
-                if (!this.ctx) return;
-                try {
-                    let osc = this.ctx.createOscillator();
-                    let gain = this.ctx.createGain();
-                    osc.connect(gain);
-                    gain.connect(this.ctx.destination);
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(1400, this.ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(1900, this.ctx.currentTime + 0.05);
-                    gain.gain.setValueAtTime(0.015, this.ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.05);
-                    osc.start();
-                    osc.stop(this.ctx.currentTime + 0.05);
-                } catch(e) {}
+                this.playOscillator(1500, 2000, 0.04, 'sine', 0.012);
             },
+
             playClick() {
-                this.init();
-                if (!this.ctx) return;
-                try {
-                    let osc = this.ctx.createOscillator();
-                    let gain = this.ctx.createGain();
-                    osc.connect(gain);
-                    gain.connect(this.ctx.destination);
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(450, this.ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(120, this.ctx.currentTime + 0.08);
-                    gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.08);
-                    osc.start();
-                    osc.stop(this.ctx.currentTime + 0.08);
-                } catch(e) {}
+                this.playOscillator(550, 150, 0.06, 'triangle', 0.05);
             },
-            playGrant() {
-                this.init();
-                if (!this.ctx) return;
-                try {
-                    let osc1 = this.ctx.createOscillator();
-                    let osc2 = this.ctx.createOscillator();
-                    let gain = this.ctx.createGain();
-                    osc1.connect(gain);
-                    osc2.connect(gain);
-                    gain.connect(this.ctx.destination);
-                    osc1.type = 'sine'; osc2.type = 'sine';
-                    osc1.frequency.setValueAtTime(523.25, this.ctx.currentTime); 
-                    osc1.frequency.setValueAtTime(659.25, this.ctx.currentTime + 0.1); 
-                    osc2.frequency.setValueAtTime(783.99, this.ctx.currentTime); 
-                    osc2.frequency.setValueAtTime(1046.50, this.ctx.currentTime + 0.1); 
-                    gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.35);
-                    osc1.start(); osc2.start();
-                    osc1.stop(this.ctx.currentTime + 0.35); osc2.stop(this.ctx.currentTime + 0.35);
-                } catch(e) {}
+
+            playKeyboard() {
+                this.playOscillator(1000, 800, 0.03, 'sine', 0.02);
             },
-            playDeny() {
-                this.init();
-                if (!this.ctx) return;
-                try {
-                    let osc = this.ctx.createOscillator();
-                    let gain = this.ctx.createGain();
-                    osc.connect(gain);
-                    gain.connect(this.ctx.destination);
-                    osc.type = 'sawtooth';
-                    osc.frequency.setValueAtTime(150, this.ctx.currentTime);
-                    osc.frequency.linearRampToValueAtTime(90, this.ctx.currentTime + 0.25);
-                    gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.25);
-                    osc.start();
-                    osc.stop(this.ctx.currentTime + 0.25);
-                } catch(e) {}
+
+            playSuccess() {
+                this.playOscillator(523.25, 1046.50, 0.35, 'sine', 0.08);
+            },
+
+            playError() {
+                this.playOscillator(120, 70, 0.25, 'sawtooth', 0.08);
+            },
+
+            initBackgroundMusic() {
+                if (!this.isStarted) {
+                    this.init();
+                    this.bgMusic.volume = 0.40;
+                    this.bgMusic.play().then(() => {
+                        this.isStarted = true;
+                        this.btnIcon.className = 'fa-solid fa-volume-high animate-pulse';
+                        this.wave.classList.remove('hidden');
+                        this.wave.classList.add('flex');
+                    }).catch(e => {
+                        console.log("Interactúe con el sitio para habilitar el sonido.");
+                    });
+                }
+            },
+
+            toggleBackgroundMusic() {
+                this.initBackgroundMusic();
+                this.playClick();
+                if (this.bgMusic.paused) {
+                    this.bgMusic.play();
+                    this.btnIcon.className = 'fa-solid fa-volume-high animate-pulse';
+                    this.wave.classList.remove('hidden');
+                    this.wave.classList.add('flex');
+                } else {
+                    this.bgMusic.pause();
+                    this.btnIcon.className = 'fa-solid fa-volume-xmark';
+                    this.wave.classList.remove('flex');
+                    this.wave.classList.add('hidden');
+                }
             }
         };
 
-        const bgMusic = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        let musicStarted = false;
+        // Activadores iniciales de audio en la primera interacción
+        window.addEventListener('click', () => AudioEngine.initBackgroundMusic(), { once: true });
+        window.addEventListener('touchstart', () => AudioEngine.initBackgroundMusic(), { once: true });
 
-        function initAudioOnInteraction() {
-            if (!musicStarted) {
-                AudioEngine.init();
-                bgMusic.volume = 0.45;
-                bgMusic.play().then(() => {
-                    musicStarted = true;
-                    musicIcon.className = 'fa-solid fa-volume-high animate-pulse';
-                }).catch(err => {
-                    console.log("Esperando interacción...");
-                });
-            }
-        }
+        // SISTEMA DE VERIFICACIÓN DE CLAVE (MÓDULO DE VERIFICACIÓN)
+        const AccessControl = {
+            targetKey: "IMPARABLESLATAM", // Firma digital válida
+            currentInput: "",
+            pendingUrl: "",
+            modal: document.getElementById('securityModal'),
+            inputField: document.getElementById('inputPass'),
+            errorAlert: document.getElementById('errorAlert'),
 
-        window.addEventListener('click', initAudioOnInteraction, { once: true });
-        window.addEventListener('touchstart', initAudioOnInteraction, { once: true });
+            request(url, resourceName) {
+                AudioEngine.playClick();
+                
+                if (sessionStorage.getItem('access_verified_latam') === 'true') {
+                    window.open(url, '_blank');
+                    return;
+                }
 
-        function toggleAudio() {
-            initAudioOnInteraction();
-            AudioEngine.playClick();
-            if (bgMusic.paused) {
-                bgMusic.play();
-                musicIcon.className = 'fa-solid fa-volume-high animate-pulse';
-            } else {
-                bgMusic.pause();
-                musicIcon.className = 'fa-solid fa-volume-xmark';
-            }
-        }
+                this.pendingUrl = url;
+                document.getElementById('modalResourceName').innerText = resourceName;
+                this.currentInput = "";
+                this.inputField.value = "";
+                this.errorAlert.classList.add('opacity-0');
 
-        // Sistema de Acceso Universal
-        const CLAVE_ACCESO = "INPARABLESLATAM";
-        let linkPendiente = "";
-
-        function solicitarAcceso(link, name) {
-            AudioEngine.playClick();
-            if (sessionStorage.getItem('acceso_inparables_secure') === 'true') {
-                window.open(link, '_blank');
-                return;
-            }
-            
-            linkPendiente = link;
-            document.getElementById('modalTargetName').innerHTML = name;
-            
-            const modal = document.getElementById('passwordModal');
-            modal.classList.remove('hidden');
-            setTimeout(() => { modal.classList.add('opacity-100'); }, 10);
-            
-            document.getElementById('accessPasswordInput').focus();
-            document.getElementById('errorMessage').classList.add('hidden');
-            document.getElementById('accessPasswordInput').value = "";
-        }
-
-        function closeModal() {
-            AudioEngine.playClick();
-            const modal = document.getElementById('passwordModal');
-            modal.classList.remove('opacity-100');
-            setTimeout(() => { modal.classList.add('hidden'); }, 300);
-            linkPendiente = "";
-        }
-
-        function verificarAcceso() {
-            const inputVal = document.getElementById('accessPasswordInput').value.trim().toUpperCase();
-            if (inputVal === CLAVE_ACCESO) {
-                sessionStorage.setItem('acceso_inparables_secure', 'true');
-                AudioEngine.playGrant();
-                window.open(linkPendiente, '_blank');
-                closeModal();
-            } else {
-                AudioEngine.playDeny();
-                const errorText = document.getElementById('errorMessage');
-                errorText.classList.remove('hidden');
-                const input = document.getElementById('accessPasswordInput');
-                input.classList.add('border-red-500', 'animate-bounce');
+                this.modal.classList.remove('hidden');
                 setTimeout(() => {
-                    input.classList.remove('border-red-500', 'animate-bounce');
-                }, 1000);
-            }
-        }
+                    this.modal.classList.remove('opacity-0');
+                }, 50);
+            },
 
-        document.getElementById('accessPasswordInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                verificarAcceso();
-            }
-        });
-
-        // Temporizador Semanal
-        function actualizarTemporizador() {
-            const ahora = new Date();
-            let proximoSabado = new Date();
-            
-            const diasFaltantes = (6 - ahora.getDay() + 7) % 7;
-            proximoSabado.setDate(ahora.getDate() + diasFaltantes);
-            proximoSabado.setHours(20, 0, 0, 0);
-
-            if (ahora.getTime() > proximoSabado.getTime()) {
-                proximoSabado.setDate(proximoSabado.getDate() + 7);
-            }
-
-            const diferencia = proximoSabado.getTime() - ahora.getTime();
-
-            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-
-            document.getElementById('daysBox').innerText = dias.toString().padStart(2, '0');
-            document.getElementById('hoursBox').innerText = horas.toString().padStart(2, '0');
-            document.getElementById('minsBox').innerText = minutos.toString().padStart(2, '0');
-
-            const totalCicloSemanal = 7 * 24 * 60 * 60 * 1000;
-            const tiempoTranscurrido = totalCicloSemanal - diferencia;
-            let porcentajeAvance = Math.min(Math.max(Math.floor((tiempoTranscurrido / totalCicloSemanal) * 100), 5), 98);
-
-            if (porcentajeAvance < 67) {
-                porcentajeAvance = 67 + Math.floor((porcentajeAvance / 100) * 31);
-            }
-
-            document.getElementById('progressBar').style.width = porcentajeAvance + '%';
-            document.getElementById('percentLabel').innerText = porcentajeAvance + '% LLENO';
-        }
-
-        actualizarTemporizador();
-        setInterval(actualizarTemporizador, 1000);
-
-        // --- SISTEMA DOBLE CANVAS (SISTEMA HACKER DIGITAL Y CORAZONES) ---
-        const bgCanvas = document.getElementById('bgCanvas');
-        const bgCtx = bgCanvas.getContext('2d');
-        const fgCanvas = document.getElementById('fgCanvas');
-        const fgCtx = fgCanvas.getContext('2d');
-        
-        let width, height;
-        let hackerStreams = [];
-        let floatingHearts = [];
-        let interactiveHearts = [];
-        
-        const goldColors = [
-            'rgba(255, 215, 0, ',   
-            'rgba(255, 224, 102, ', 
-            'rgba(184, 134, 11, ',  
-            'rgba(255, 255, 255, '  
-        ];
-
-        let mouse = { x: -1000, y: -1000 };
-
-        function resize() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            bgCanvas.width = width; bgCanvas.height = height;
-            fgCanvas.width = width; fgCanvas.height = height;
-        }
-        window.addEventListener('resize', resize);
-
-        function drawHeart(ctxToUse, x, y, size, angle, colorFill) {
-            const r = size / 4;
-            ctxToUse.save();
-            ctxToUse.translate(x, y);
-            ctxToUse.rotate(angle);
-            ctxToUse.beginPath();
-            ctxToUse.arc(-r, -r, r, Math.PI, 0, false);
-            ctxToUse.arc(r, -r, r, Math.PI, 0, false);
-            ctxToUse.bezierCurveTo(size/2, size/8, 0, size/2, 0, size/2);
-            ctxToUse.bezierCurveTo(0, size/2, -size/2, size/8, -size/2, -r);
-            ctxToUse.fillStyle = colorFill;
-            ctxToUse.shadowBlur = 8;
-            ctxToUse.shadowColor = 'rgba(255, 215, 0, 0.4)';
-            ctxToUse.fill();
-            ctxToUse.restore();
-        }
-
-        // SISTEMA HACKER DIGITAL (Cifras Suaves Cayendo)
-        class HackerStream {
-            constructor(x) {
-                this.x = x;
-                this.reset(true);
-            }
-            reset(initial = false) {
-                this.y = initial ? Math.random() * height : -100;
-                // Velocidad sumamente suave y lenta
-                this.speed = Math.random() * 0.8 + 0.3; 
-                this.chars = [];
-                const length = Math.floor(Math.random() * 15 + 8);
-                for(let i=0; i<length; i++) {
-                    this.chars.push({
-                        val: Math.floor(Math.random() * 10).toString(),
-                        opacity: 1 - (i / length) 
-                    });
+            pressKey(char) {
+                AudioEngine.playKeyboard();
+                this.errorAlert.classList.add('opacity-0');
+                if (this.currentInput.length < 16) {
+                    this.currentInput += char;
+                    this.inputField.value = "•".repeat(this.currentInput.length);
                 }
-            }
-            update() {
-                this.y += this.speed;
-                if (this.y - (this.chars.length * 14) > height) {
-                    this.reset();
-                }
-                // Cambio aleatorio de números para efecto ciber
-                if(Math.random() > 0.95) {
-                    const idx = Math.floor(Math.random() * this.chars.length);
-                    this.chars[idx].val = Math.floor(Math.random() * 10).toString();
-                }
-            }
-            draw() {
-                bgCtx.font = 'bold 12px Orbitron';
-                for(let i=0; i<this.chars.length; i++) {
-                    const charY = this.y - (i * 14);
-                    if(charY > 0 && charY < height) {
-                        // El primer número brilla en cian sutil, el resto se difumina en oro
-                        if (i === 0) {
-                            bgCtx.fillStyle = `rgba(0, 240, 255, ${this.chars[i].opacity * 0.4})`;
-                        } else {
-                            bgCtx.fillStyle = `rgba(255, 215, 0, ${this.chars[i].opacity * 0.25})`;
-                        }
-                        bgCtx.fillText(this.chars[i].val, this.x, charY);
+
+                // Autocomprobación de seguridad
+                if (this.currentInput === this.targetKey) {
+                    setTimeout(() => this.grantAccess(), 250);
+                } else if (this.currentInput.length >= this.targetKey.length) {
+                    // Soporte para variaciones ortográficas de contraseña
+                    if(this.currentInput === "INPARABLESLATAM" || this.currentInput === "IMPARABLES") {
+                        setTimeout(() => this.grantAccess(), 250);
+                    } else {
+                        setTimeout(() => this.denyAccess(), 250);
                     }
                 }
-            }
-        }
+            },
 
-        // Corazones de Fondo
-        class FloatingHeart {
-            constructor() { this.reset(true); }
-            reset(initial = false) {
-                this.x = Math.random() * width;
-                this.y = initial ? Math.random() * height : height + 50;
-                this.size = Math.random() * 15 + 4; 
-                this.speedY = (Math.random() * 1.0 + 0.3) * (this.size / 15);
-                const colorBase = goldColors[Math.floor(Math.random() * goldColors.length)];
-                const opacity = Math.random() * 0.22 + 0.05;
-                this.color = colorBase + opacity + ')';
-                this.angle = Math.random() * Math.PI * 2;
-                this.swing = (Math.random() * 1.0 + 0.2) * (this.size / 20);
-            }
-            update() {
-                this.y -= this.speedY;
-                this.angle += 0.01;
-                let currentX = this.x + Math.sin(this.angle) * this.swing;
-                drawHeart(bgCtx, currentX, this.y, this.size, Math.sin(this.angle) * 0.12, this.color);
-                if (this.y < -50) this.reset();
-            }
-        }
+            clear() {
+                AudioEngine.playClick();
+                this.currentInput = "";
+                this.inputField.value = "";
+                this.errorAlert.classList.add('opacity-0');
+            },
 
-        // Corazones Interactivos Táctiles
-        class InteractiveHeart {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 12 + 5; 
-                this.vx = (Math.random() - 0.5) * 5;
-                this.vy = (Math.random() - 0.5) * 5 - 1.5; 
-                this.life = 1; 
-                this.decay = Math.random() * 0.03 + 0.02; 
-                this.angle = Math.random() * Math.PI * 2;
-                this.spin = (Math.random() - 0.5) * 0.1; 
-                this.colorBase = goldColors[Math.floor(Math.random() * goldColors.length)];
+            close() {
+                AudioEngine.playClick();
+                this.modal.classList.add('opacity-0');
+                setTimeout(() => {
+                    this.modal.classList.add('hidden');
+                }, 300);
+            },
+
+            grantAccess() {
+                AudioEngine.playSuccess();
+                sessionStorage.setItem('access_verified_latam', 'true');
+                this.close();
+                if (this.pendingUrl) {
+                    window.open(this.pendingUrl, '_blank');
+                }
+            },
+
+            denyAccess() {
+                AudioEngine.playError();
+                this.errorAlert.classList.remove('opacity-0');
+                this.currentInput = "";
+                this.inputField.value = "";
             }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.vy -= 0.03; 
-                this.angle += this.spin;
-                this.life -= this.decay;
-                
-                if(this.life > 0) {
-                    const currentSize = Math.max(0, this.size * this.life);
-                    drawHeart(fgCtx, this.x, this.y, currentSize, this.angle, this.colorBase + this.life + ')');
+        };
+
+        // GESTOR DE CAMPAÑA Y SENSACIÓN DE URGENCIA
+        const CampaignManager = {
+            init() {
+                let targetDate = new Date();
+                targetDate.setDate(targetDate.getDate() + 2); // Siempre 2 días adelante para marketing
+
+                function updateCountdown() {
+                    let now = new Date().getTime();
+                    let distance = targetDate - now;
+
+                    if (distance < 0) {
+                        targetDate = new Date();
+                        targetDate.setDate(targetDate.getDate() + 2);
+                        return;
+                    }
+
+                    let d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    let h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                    document.getElementById('days').innerText = String(d).padStart(2, '0');
+                    document.getElementById('hours').innerText = String(h).padStart(2, '0');
+                    document.getElementById('minutes').innerText = String(m).padStart(2, '0');
+                }
+
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+
+                // Fluctuación realista de cupos disponibles
+                let currentSpots = 6;
+                const spotLabel = document.getElementById('spotsLeft');
+                const progressBar = document.getElementById('spotProgress');
+
+                setInterval(() => {
+                    if (currentSpots > 1 && Math.random() > 0.8) {
+                        currentSpots--;
+                        spotLabel.innerText = `${currentSpots} Cupos Libres`;
+                        let percent = (currentSpots / 8) * 100;
+                        progressBar.style.width = `${percent}%`;
+                    }
+                }, 40000);
+            }
+        };
+
+        const UIEngine = {
+            triggerInteraction() {
+                AudioEngine.playClick();
+                const logo = document.querySelector('.animate-pulse');
+                if (logo) {
+                    logo.classList.add('scale-110');
+                    setTimeout(() => logo.classList.remove('scale-110'), 200);
                 }
             }
-        }
+        };
 
-        function createInteractiveHearts(x, y, count) {
-            for(let i = 0; i < count; i++) interactiveHearts.push(new InteractiveHeart(x, y));
-            if(interactiveHearts.length > 50) {
-                interactiveHearts.splice(0, interactiveHearts.length - 50);
-            }
-        }
-
-        let lastTouchTime = 0;
-        
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX; mouse.y = e.clientY;
-            if(Math.random() > 0.6) createInteractiveHearts(e.clientX, e.clientY, 1);
-        });
-
-        window.addEventListener('mousedown', (e) => createInteractiveHearts(e.clientX, e.clientY, 6));
-
-        window.addEventListener('touchmove', (e) => {
-            const now = Date.now();
-            if (now - lastTouchTime > 40) {
-                for(let i = 0; i < e.touches.length; i++) {
-                    createInteractiveHearts(e.touches[i].clientX, e.touches[i].clientY, 1);
-                }
-                lastTouchTime = now;
-            }
-            mouse.x = e.touches[0].clientX;
-            mouse.y = e.touches[0].clientY;
-        }, {passive: true});
-
-        window.addEventListener('touchstart', (e) => {
-            for(let i = 0; i < e.touches.length; i++) createInteractiveHearts(e.touches[i].clientX, e.touches[i].clientY, 4);
-        }, {passive: true});
-
-        function initCanvas() {
-            resize();
-            floatingHearts = [];
-            interactiveHearts = [];
-            hackerStreams = [];
-            
-            // Iniciar Lluvia Digital (Cada columna espaciada 20px)
-            const numColumns = Math.floor(width / 20); 
-            for (let i = 0; i < numColumns; i++) hackerStreams.push(new HackerStream(i * 20));
-
-            // Iniciar Corazones
-            const maxFloating = Math.min(Math.floor(width / 16), 25); 
-            for (let i = 0; i < maxFloating; i++) floatingHearts.push(new FloatingHeart());
-        }
-
-        function animate() {
-            bgCtx.clearRect(0, 0, width, height);
-            fgCtx.clearRect(0, 0, width, height);
-            
-            // DIBUJO DE LLUVIA DIGITAL
-            for(let i=0; i < hackerStreams.length; i++) {
-                hackerStreams[i].update();
-                hackerStreams[i].draw();
-            }
-
-            // DIBUJO DE CORAZONES
-            floatingHearts.forEach(heart => heart.update());
-            
-            for(let i = interactiveHearts.length - 1; i >= 0; i--) {
-                interactiveHearts[i].update();
-                if(interactiveHearts[i].life <= 0) interactiveHearts.splice(i, 1);
-            }
-
-            requestAnimationFrame(animate);
-        }
-
+        // Arranque de Sistemas
         window.onload = function() {
-            initCanvas();
-            animate();
-        }
+            initBackground3D();
+            CampaignManager.init();
+        };
     </script>
 </body>
 </html>
