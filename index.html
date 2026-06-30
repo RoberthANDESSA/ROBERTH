@@ -55,7 +55,7 @@
             padding: 0;
             width: 100%;
             min-height: 100vh;
-            background-color: #020104; /* Fondo ultra-oscuro zafiro/violeta */
+            background-color: #020104;
             color: #f8fafc;
             font-family: 'Plus Jakarta Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -73,6 +73,7 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
+            will-change: transform;
         }
 
         #fg-canvas {
@@ -81,11 +82,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 40; /* Por encima de las tarjetas y los botones */
-            pointer-events: none; /* Clics pasan libremente a los botones */
+            z-index: 40;
+            pointer-events: none;
+            will-change: transform;
         }
 
-        /* TARJETAS DE CRISTAL ZAFIRO LUXURY */
+        /* TARJETAS DE CRISTAL ZAFIRO LUXURY - Optimizadas para GPU */
         .cyber-glass-card {
             background: linear-gradient(145deg, rgba(16, 12, 32, 0.82) 0%, rgba(6, 4, 14, 0.96) 100%);
             backdrop-filter: blur(20px);
@@ -93,12 +95,14 @@
             border: 1.5px solid rgba(255, 214, 0, 0.22);
             box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.04), 0 15px 35px rgba(0, 0, 0, 0.85);
             transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+            will-change: transform, box-shadow, border-color;
+            transform: translateZ(0);
         }
 
         .cyber-glass-card:hover {
             border-color: rgba(255, 214, 0, 0.6);
             box-shadow: inset 0 1px 5px rgba(255, 255, 255, 0.08), 0 0 25px rgba(255, 214, 0, 0.15), 0 20px 45px rgba(0, 0, 0, 0.9);
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
         }
 
         /* Destello sweep reflectivo */
@@ -151,6 +155,7 @@
             background: linear-gradient(90deg, #947a00, #FFD600, #ffffff, #FFD600, #947a00);
             background-size: 200% 100%;
             animation: energyFlow 2.5s infinite linear;
+            will-change: background-position;
         }
 
         @keyframes energyFlow {
@@ -171,15 +176,38 @@
 
         .btn-radar-ripple-1 {
             animation: radarRipple 2.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+            will-change: transform, opacity;
         }
 
         .btn-radar-ripple-2 {
             animation: radarRipple 2.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
             animation-delay: 1.1s;
+            will-change: transform, opacity;
+        }
+
+        /* Shake sutil y discreto para la foto grande (invita a tocar) */
+        @keyframes subtleShake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(-1.5px, 0.5px) rotate(-0.4deg); }
+            40% { transform: translate(1.5px, -0.5px) rotate(0.4deg); }
+            60% { transform: translate(-1px, 0.8px) rotate(-0.3deg); }
+            80% { transform: translate(1px, -0.8px) rotate(0.3deg); }
+        }
+
+        .subtle-shake {
+            animation: subtleShake 420ms ease-in-out;
         }
 
         * {
             -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Optimización extra para mobile */
+        @media (max-width: 768px) {
+            .cyber-glass-card {
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+            }
         }
     </style>
 </head>
@@ -201,6 +229,7 @@
             <img src="https://i.postimg.cc/c4gjQN5x/FB-IMG-1779178194822.jpg" 
                  alt="Roberth Coriza" 
                  class="absolute inset-0 w-full h-full object-cover object-top opacity-80 transition-transform duration-700 ease-out group-hover:scale-105"
+                 loading="eager"
                  onerror="this.src='https://placehold.co/400x400/06060c/ffd600?text=RC'">
             
             <!-- Degradado cinematográfico de fusión Obsidian -->
@@ -224,7 +253,8 @@
                         <img src="https://i.postimg.cc/sXtWq85G/Diseno-sin-titulo-(1).jpg" 
                              alt="Andessa Logo" 
                              onerror="this.src='https://placehold.co/150x150/05050a/ffd600?text=Andessa'"
-                             class="absolute inset-[1.5px] w-[61px] h-[61px] rounded-xl object-cover">
+                             class="absolute inset-[1.5px] w-[61px] h-[61px] rounded-xl object-cover"
+                             loading="eager">
                     </div>
 
                     <!-- Datos Corporativos -->
@@ -286,39 +316,37 @@
                     <span class="text-white/80 font-bold tracking-wide flex items-center gap-1.5">
                         <i class="fa-solid fa-signal text-gold animate-pulse"></i> Tasa de Disponibilidad
                     </span>
-                    <span id="spotsLeft" class="text-gold font-black font-display text-sm tracking-wide">6 Cupos Libres</span>
+                    <span id="spotsLeft" class="text-gold font-black font-display text-sm tracking-wide">12 Cupos Libres</span>
                 </div>
                 <div class="w-full bg-slate-950 h-3.5 rounded-full overflow-hidden border border-gold/30 p-[1.5px]">
-                    <div id="spotProgress" class="quantum-energy-flow h-full rounded-full transition-all duration-1000 ease-out shadow-neon-gold" style="width: 75%"></div>
+                    <div id="spotProgress" class="quantum-energy-flow h-full rounded-full transition-all duration-1000 ease-out shadow-neon-gold" style="width: 80%"></div>
                 </div>
             </div>
 
-            <!-- Botón de Postulación de WhatsApp (Verde Esmeralda Confiable con Ondas de Choque Vibratorias) -->
+            <!-- Botón de Postulación de WhatsApp (Método mejorado para móviles y WhatsApp Business) -->
             <div class="relative w-full">
                 <!-- Ondas de choque de expansión -->
                 <div class="absolute inset-0 rounded-2xl bg-emerald-500/25 btn-radar-ripple-1 pointer-events-none -z-10"></div>
                 <div class="absolute inset-0 rounded-2xl bg-teal-500/15 btn-radar-ripple-2 pointer-events-none -z-10"></div>
                 
-                <a href="https://wa.me/59175954334?text=HOLA%20ROBERTH%20C.%20ME%20ENCANTARIA%20POSTULAR%20A%20LA%20EMPRESA%20ANDESSA%20PARA%20SER%20PARTE%20DE%20LA%20EMPRESA" 
-                   target="_blank" 
-                   onmouseover="AudioEngine.playHover()"
-                   onclick="AudioEngine.playClick()"
-                   class="relative flex items-center justify-between bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-2xl p-4 shadow-[0_0_25px_rgba(16,185,129,0.35)] group transition-all duration-300 transform active:scale-95 overflow-hidden border border-emerald-400/40">
+                <button onclick="openWhatsApp()" 
+                        onmouseover="AudioEngine.playHover()"
+                        class="relative w-full flex items-center justify-between bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-2xl p-4 shadow-[0_0_25px_rgba(16,185,129,0.35)] group transition-all duration-300 transform active:scale-95 overflow-hidden border border-emerald-400/40">
                     
-                    <!-- Destello de escaneo de izquierda a derecha -->
+                    <!-- Destello de escaneo -->
                     <div class="absolute inset-0 w-1/2 h-full bg-white/10 skew-x-[-25deg] -translate-x-[150%] group-hover:animate-[swipeBtn_2s_infinite]"></div>
 
-                    <div class="flex items-center gap-4 relative z-10">
-                        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl text-white shadow-md">
+                    <div class="flex items-center gap-3.5 relative z-10 min-w-0 flex-1">
+                        <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center text-2xl text-white shadow-md flex-shrink-0">
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
-                        <div class="text-left">
-                            <span class="font-display text-sm font-black tracking-wider block">POSTULACIÓN DE NEGOCIOS</span>
-                            <span class="text-[9px] text-emerald-100 tracking-wide font-light">Escríbeme para agendar entrevista</span>
+                        <div class="text-left min-w-0 flex-1">
+                            <span class="font-display text-[13px] sm:text-sm font-black tracking-wider block leading-tight">POSTULAR A ANDESSA</span>
+                            <span class="text-[9.5px] text-emerald-100 tracking-wide font-light block leading-tight">Agenda tu entrevista ahora</span>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-right text-white/95 group-hover:translate-x-1.5 transition-transform relative z-10"></i>
-                </a>
+                    <i class="fa-solid fa-arrow-right text-white/95 group-hover:translate-x-1.5 transition-transform relative z-10 flex-shrink-0 ml-1"></i>
+                </button>
             </div>
 
         </section>
@@ -332,7 +360,7 @@
                onmouseover="AudioEngine.playHover()"
                onclick="AudioEngine.playClick()"
                class="relative rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-sky-500/25 transition-all duration-300 hover:scale-[1.02] hover:border-sky-400/50 bg-[#040f1a]/80"
-               style="box-shadow: 0 10px 25px rgba(56, 189, 248, 0.1);">
+               style="box-shadow: 0 10px 25px rgba(56, 189, 248, 0.1); will-change: transform, box-shadow;">
                 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] bg-[size:12px_12px]"></div>
 
                 <div class="flex items-center gap-4 relative z-10">
@@ -355,7 +383,7 @@
             <button onclick="AccessControl.request('https://t.me/+STA_3DJm75U3Yzcx', 'Biblioteca Virtual')" 
                     onmouseover="AudioEngine.playHover()"
                     class="relative w-full rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-gold/20 transition-all duration-300 hover:scale-[1.02] hover:border-gold/50 bg-[#140f06]/80 text-left cursor-pointer"
-                    style="box-shadow: 0 10px 25px rgba(245, 158, 11, 0.05);">
+                    style="box-shadow: 0 10px 25px rgba(245, 158, 11, 0.05); will-change: transform, box-shadow;">
                 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] bg-[size:12px_12px]"></div>
 
                 <div class="flex items-center gap-4 relative z-10">
@@ -380,7 +408,7 @@
             <button onclick="AccessControl.request('https://t.me/+1C81WCW3CLU5NjI5', 'Canal Privado')" 
                     onmouseover="AudioEngine.playHover()"
                     class="relative w-full rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-emerald-500/20 transition-all duration-300 hover:scale-[1.02] hover:border-emerald-500/50 bg-[#06120e]/80 text-left cursor-pointer"
-                    style="box-shadow: 0 10px 25px rgba(16, 185, 129, 0.05);">
+                    style="box-shadow: 0 10px 25px rgba(16, 185, 129, 0.05); will-change: transform, box-shadow;">
                 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] bg-[size:12px_12px]"></div>
 
                 <div class="flex items-center gap-4 relative z-10">
@@ -405,7 +433,7 @@
             <button onclick="AccessControl.request('https://t.me/+1C81WCW3CLU5NjI5', 'Herramientas IA')" 
                     onmouseover="AudioEngine.playHover()"
                     class="relative w-full rounded-2xl p-4 flex items-center justify-between group overflow-hidden border border-fuchsia-500/20 transition-all duration-300 hover:scale-[1.02] hover:border-fuchsia-500/50 bg-[#120517]/80 text-left cursor-pointer"
-                    style="box-shadow: 0 10px 25px rgba(217, 70, 239, 0.05);">
+                    style="box-shadow: 0 10px 25px rgba(217, 70, 239, 0.05); will-change: transform, box-shadow;">
                 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d946ef_1px,transparent_1px)] bg-[size:12px_12px]"></div>
 
                 <div class="flex items-center gap-4 relative z-10">
@@ -445,7 +473,8 @@
             <div class="w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative aspect-[16/10] bg-slate-950">
                 <img src="https://i.postimg.cc/HLZg31bH/Diseno-sin-titulo-(2).jpg" 
                      alt="Sede Central" 
-                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                     loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
             </div>
 
@@ -454,7 +483,8 @@
                target="_blank" 
                onmouseover="AudioEngine.playHover()"
                onclick="AudioEngine.playClick()"
-               class="relative rounded-2xl p-3.5 flex items-center justify-between group overflow-hidden border border-sky-500/20 transition-all duration-300 hover:scale-[1.02] hover:border-sky-400/50 bg-[#080d1a]/90 shadow-lg">
+               class="relative rounded-2xl p-3.5 flex items-center justify-between group overflow-hidden border border-sky-500/20 transition-all duration-300 hover:scale-[1.02] hover:border-sky-400/50 bg-[#080d1a]/90 shadow-lg"
+               style="will-change: transform;">
                 <div class="flex items-center gap-3 relative z-10">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-teal-400 text-white flex items-center justify-center shadow-lg">
                         <i class="fa-solid fa-location-arrow animate-pulse"></i>
@@ -551,45 +581,46 @@
             nodes: [],
             stars: [],
             sparks: [],
-            maxNodes: 35, // Optimizado para fluidez en móvil
+            maxNodes: 24,           // REDUCIDO de 35 → 24 para más fluidez (manteniendo efecto)
             connectionDist: 90,
             glows: [],
+            lastSparkTime: 0,
 
             init() {
                 this.canvas = document.getElementById('bg-canvas');
                 this.fgCanvas = document.getElementById('fg-canvas');
                 if (!this.canvas || !this.fgCanvas) return;
                 
-                this.ctx = this.canvas.getContext('2d');
-                this.fgCtx = this.fgCanvas.getContext('2d');
+                this.ctx = this.canvas.getContext('2d', { alpha: true });
+                this.fgCtx = this.fgCanvas.getContext('2d', { alpha: true });
                 
                 this.resize();
-                window.addEventListener('resize', () => this.resize());
+                window.addEventListener('resize', () => this.resize(), { passive: true });
 
-                // Generación de la constelación neural de fondo
+                // Generación de la constelación neural de fondo (optimizada)
                 for (let i = 0; i < this.maxNodes; i++) {
                     this.nodes.push({
                         x: Math.random() * this.canvas.width,
                         y: Math.random() * this.canvas.height,
-                        vx: (Math.random() - 0.5) * 0.3,
-                        vy: (Math.random() - 0.5) * 0.3,
-                        r: Math.random() * 1.5 + 1,
+                        vx: (Math.random() - 0.5) * 0.28,
+                        vy: (Math.random() - 0.5) * 0.28,
+                        r: Math.random() * 1.4 + 0.9,
                         color: Math.random() > 0.4 ? '#FFD600' : '#00E5FF'
                     });
                 }
 
-                // Generación de estrellas cósmicas nítidas y limpias (SIN desenfoque)
-                for (let i = 0; i < 65; i++) {
+                // Generación de estrellas cósmicas nítidas (reducido para fluidez)
+                for (let i = 0; i < 42; i++) {
                     this.stars.push({
                         x: Math.random() * this.canvas.width,
                         y: Math.random() * this.canvas.height,
-                        r: Math.random() * 1.2 + 0.3, // Píxeles perfectos nítidos
+                        r: Math.random() * 1.1 + 0.35,
                         alpha: Math.random(),
-                        speed: 0.006 + Math.random() * 0.01
+                        speed: 0.005 + Math.random() * 0.009
                     });
                 }
 
-                // Configuración de detectores de gestos interactivos (Chispas de soldador)
+                // Configuración de detectores de gestos interactivos
                 this.setupInteractions();
 
                 this.animate();
@@ -609,48 +640,55 @@
             },
 
             setupInteractions() {
-                // Registrar chispas en movimiento de mouse
+                // Mouse - estrellas sutiles y muy ligeras (sin lag)
+                let mouseThrottle = 0;
                 window.addEventListener('mousemove', (e) => {
-                    this.createSparks(e.clientX, e.clientY, 1);
-                });
+                    const now = Date.now();
+                    if (now - mouseThrottle > 55) { // más lento = menos partículas
+                        if (Math.random() > 0.55) {
+                            this.createSparks(e.clientX, e.clientY, 1); // solo 1 estrella suave
+                        }
+                        mouseThrottle = now;
+                    }
+                }, { passive: true });
 
-                // Registrar chispas en deslizamiento de pantalla o toque táctil (Móviles)
+                // Touch / deslizar - muy discreto
                 window.addEventListener('touchmove', (e) => {
-                    if (e.touches && e.touches[0]) {
-                        this.createSparks(e.touches[0].clientX, e.touches[0].clientY, 2);
+                    if (e.touches && e.touches[0] && Math.random() > 0.6) {
+                        this.createSparks(e.touches[0].clientX, e.touches[0].clientY, 1);
                     }
                 }, { passive: true });
 
                 window.addEventListener('touchstart', (e) => {
                     if (e.touches && e.touches[0]) {
-                        this.createSparks(e.touches[0].clientX, e.touches[0].clientY, 8); // Chispazo inicial al pulsar
+                        this.createSparks(e.touches[0].clientX, e.touches[0].clientY, 2); // toque inicial suave
                     }
                 }, { passive: true });
             },
 
             createSparks(x, y, count) {
-                for (let i = 0; i < count; i++) {
-                    // Chispas estilo Grinder / Soldador: Gran velocidad de expulsión
+                const num = Math.floor(count);
+                for (let i = 0; i < num; i++) {
                     let angle = Math.random() * Math.PI * 2;
-                    let speed = Math.random() * 5 + 2;
+                    let speed = Math.random() * 4.8 + 2.1;
                     this.sparks.push({
                         x: x,
                         y: y,
-                        px: x, // Coordenadas anteriores para renderizar la estela
+                        px: x,
                         py: y,
                         vx: Math.cos(angle) * speed,
-                        vy: Math.sin(angle) * speed - (Math.random() * 2), // Desviación gravitacional
-                        friction: 0.95, // Rozamiento del aire
-                        gravity: 0.2,   // Gravedad terrestre descendente
-                        r: Math.random() * 2.2 + 1,
+                        vy: Math.sin(angle) * speed - (Math.random() * 1.8),
+                        friction: 0.955,
+                        gravity: 0.22,
+                        r: Math.random() * 2.0 + 0.9,
                         alpha: 1.0,
-                        decay: 0.015 + Math.random() * 0.02,
+                        decay: 0.018 + Math.random() * 0.018,
                         colorState: Math.random() > 0.45 ? 0 : 1 
                     });
                 }
-                // Limitar chispas activas simultáneas en buffer para evitar latencia
-                if (this.sparks.length > 90) {
-                    this.sparks.splice(0, this.sparks.length - 90);
+                // Limitar chispas activas (más agresivo para fluidez)
+                if (this.sparks.length > 65) {
+                    this.sparks.splice(0, this.sparks.length - 65);
                 }
             },
 
@@ -660,12 +698,11 @@
                 const width = this.canvas.width;
                 const height = this.canvas.height;
 
-                // --- 1. RENDERIZAR LIENZO DE FONDO (Detrás de los paneles) ---
-                // Limpieza de pantalla profunda de base zafiro
+                // --- FONDO ---
                 ctx.fillStyle = '#030308';
                 ctx.fillRect(0, 0, width, height);
 
-                // Dibujar nubes cósmicas de gas estelar
+                // Nebulosas / glows radiales (baratos)
                 this.glows.forEach(g => {
                     let grad = ctx.createRadialGradient(g.x, g.y, 0, g.x, g.y, g.r);
                     grad.addColorStop(0, g.color);
@@ -676,14 +713,12 @@
                     ctx.fill();
                 });
 
-                // Dibujar estrellas fijas (Estrellas nítidas sin glow)
+                // Estrellas (optimizado)
                 ctx.save();
                 this.stars.forEach(s => {
                     s.alpha += s.speed;
-                    if (s.alpha > 1 || s.alpha < 0.1) {
-                        s.speed *= -1; // Invierte el titileo
-                    }
-                    ctx.globalAlpha = Math.max(0.1, Math.min(1, s.alpha));
+                    if (s.alpha > 1 || s.alpha < 0.12) s.speed *= -1;
+                    ctx.globalAlpha = Math.max(0.12, Math.min(1, s.alpha));
                     ctx.fillStyle = '#ffffff';
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
@@ -691,12 +726,11 @@
                 });
                 ctx.restore();
 
-                // Dibujar red de datos interconectados
+                // Nodos + conexiones
                 this.nodes.forEach(n => {
                     n.x += n.vx;
                     n.y += n.vy;
 
-                    // Limites rebotables suaves
                     if (n.x < 0 || n.x > width) n.vx *= -1;
                     if (n.y < 0 || n.y > height) n.vy *= -1;
 
@@ -706,17 +740,20 @@
                     ctx.fill();
                 });
 
+                // Conexiones entre nodos (O(n²) pero con menos nodos = más fluido)
                 for (let i = 0; i < this.nodes.length; i++) {
                     for (let j = i + 1; j < this.nodes.length; j++) {
                         const n1 = this.nodes[i];
                         const n2 = this.nodes[j];
                         const dx = n1.x - n2.x;
                         const dy = n1.y - n2.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        const dist = Math.hypot(dx, dy);
 
                         if (dist < this.connectionDist) {
-                            let alpha = (1 - dist / this.connectionDist) * 0.15;
-                            ctx.strokeStyle = n1.color === '#FFD600' ? `rgba(255, 214, 0, ${alpha})` : `rgba(0, 229, 255, ${alpha})`;
+                            let alpha = (1 - dist / this.connectionDist) * 0.14;
+                            ctx.strokeStyle = n1.color === '#FFD600' 
+                                ? `rgba(255, 214, 0, ${alpha})` 
+                                : `rgba(0, 229, 255, ${alpha})`;
                             ctx.lineWidth = 0.5;
                             ctx.beginPath();
                             ctx.moveTo(n1.x, n1.y);
@@ -726,48 +763,44 @@
                     }
                 }
 
-                // --- 2. RENDERIZAR LIENZO DELANTERO (Encima de todo, z-index: 40) ---
+                // --- PRIMER PLANO: CHISPAS (Optimizado) ---
                 fgCtx.clearRect(0, 0, width, height);
 
                 for (let i = this.sparks.length - 1; i >= 0; i--) {
                     let sp = this.sparks[i];
                     
-                    // Almacenar coordenadas previas para crear la estela de chispa en movimiento
                     sp.px = sp.x;
                     sp.py = sp.y;
 
                     sp.vx *= sp.friction;
                     sp.vy *= sp.friction;
-                    sp.vy += sp.gravity; // Aceleración gravitacional
+                    sp.vy += sp.gravity;
                     sp.x += sp.vx;
                     sp.y += sp.vy;
                     sp.alpha -= sp.decay;
 
-                    if (sp.alpha <= 0) {
+                    if (sp.alpha <= 0.02) {
                         this.sparks.splice(i, 1);
                         continue;
                     }
 
-                    // Determinar el color según la temperatura de enfriamiento de la chispa
                     let sparkColor;
-                    if (sp.alpha > 0.6) {
-                        sparkColor = '#ffffff'; // Núcleo blanco caliente
-                    } else if (sp.alpha > 0.3) {
-                        sparkColor = sp.colorState === 0 ? '#FFE600' : '#FF7700'; // Amarillo / Naranja brillante
+                    if (sp.alpha > 0.55) {
+                        sparkColor = '#ffffff';
+                    } else if (sp.alpha > 0.28) {
+                        sparkColor = sp.colorState === 0 ? '#FFE600' : '#FF8800';
                     } else {
-                        sparkColor = '#FF2200'; // Rojo enfriado terminal
+                        sparkColor = '#FF3300';
                     }
 
+                    // Optimización: menos shadowBlur (gran ganancia de FPS)
                     fgCtx.save();
-                    
-                    // CONFIGURACIÓN DE NEÓN BRILLANTE EXCLUSIVA PARA CHISPAS
                     fgCtx.globalAlpha = sp.alpha;
-                    fgCtx.shadowBlur = sp.r * 6; // Halo de dispersión de luz de soldadura
+                    fgCtx.shadowBlur = sp.r * 3.2; // Reducido de 6 a 3.2
                     fgCtx.shadowColor = sparkColor;
                     
-                    // Renderizado de cápsula de estela para mayor realismo de velocidad
                     fgCtx.strokeStyle = sparkColor;
-                    fgCtx.lineWidth = sp.r * sp.alpha;
+                    fgCtx.lineWidth = Math.max(0.8, sp.r * sp.alpha * 0.9);
                     fgCtx.lineCap = 'round';
                     fgCtx.beginPath();
                     fgCtx.moveTo(sp.x, sp.y);
@@ -781,7 +814,7 @@
             }
         };
 
-        // MOTOR DE AUDIO (Sintetizador Web Audio API de alta gama para clicks táctiles)
+        // MOTOR DE AUDIO (sin cambios)
         const AudioEngine = {
             ctx: null,
             bgMusic: document.getElementById('bgMusicElement'),
@@ -814,51 +847,32 @@
                     
                     osc.start();
                     osc.stop(this.ctx.currentTime + duration);
-                } catch(e) {
-                    console.warn("Contexto de Audio restringido");
-                }
+                } catch(e) {}
             },
 
-            playHover() {
-                this.playOscillator(1600, 2100, 0.03, 'sine', 0.01);
-            },
-
-            playClick() {
-                this.playOscillator(600, 180, 0.05, 'triangle', 0.04);
-            },
-
-            playKeyboard() {
-                this.playOscillator(1050, 850, 0.02, 'sine', 0.015);
-            },
-
-            playSuccess() {
-                this.playOscillator(523.25, 1046.50, 0.3, 'sine', 0.06);
-            },
-
-            playError() {
-                this.playOscillator(130, 80, 0.2, 'sawtooth', 0.06);
-            },
+            playHover() { this.playOscillator(1600, 2100, 0.03, 'sine', 0.01); },
+            playClick() { this.playOscillator(600, 180, 0.05, 'triangle', 0.04); },
+            playKeyboard() { this.playOscillator(1050, 850, 0.02, 'sine', 0.015); },
+            playSuccess() { this.playOscillator(523.25, 1046.50, 0.3, 'sine', 0.06); },
+            playError() { this.playOscillator(130, 80, 0.2, 'sawtooth', 0.06); },
 
             initBackgroundMusic() {
                 if (!this.isStarted) {
                     this.init();
-                    this.bgMusic.volume = 0.35;
+                    this.bgMusic.volume = 0.32;
                     this.bgMusic.play().then(() => {
                         this.isStarted = true;
-                    }).catch(e => {
-                        console.log("Interactúe con el sitio para habilitar sonido.");
-                    });
+                    }).catch(() => {});
                 }
             }
         };
 
-        // Activadores iniciales de audio en la primera interacción
         window.addEventListener('click', () => AudioEngine.initBackgroundMusic(), { once: true });
         window.addEventListener('touchstart', () => AudioEngine.initBackgroundMusic(), { once: true });
 
-        // SISTEMA DE VERIFICACIÓN DE CLAVE (MÓDULO DE VERIFICACIÓN)
+        // SISTEMA DE VERIFICACIÓN DE CLAVE (sin cambios)
         const AccessControl = {
-            targetKey: "IMPARABLESLATAM", // Firma digital válida
+            targetKey: "IMPARABLESLATAM",
             currentInput: "",
             pendingUrl: "",
             modal: document.getElementById('securityModal'),
@@ -893,15 +907,13 @@
                     this.inputField.value = "•".repeat(this.currentInput.length);
                 }
 
-                // Autocomprobación de seguridad
                 if (this.currentInput === this.targetKey) {
-                    setTimeout(() => this.grantAccess(), 250);
+                    setTimeout(() => this.grantAccess(), 220);
                 } else if (this.currentInput.length >= this.targetKey.length) {
-                    // Soporte para variaciones ortográficas de contraseña
                     if(this.currentInput === "INPARABLESLATAM" || this.currentInput === "IMPARABLES") {
-                        setTimeout(() => this.grantAccess(), 250);
+                        setTimeout(() => this.grantAccess(), 220);
                     } else {
-                        setTimeout(() => this.denyAccess(), 250);
+                        setTimeout(() => this.denyAccess(), 220);
                     }
                 }
             },
@@ -918,7 +930,7 @@
                 this.modal.classList.add('opacity-0');
                 setTimeout(() => {
                     this.modal.classList.add('hidden');
-                }, 300);
+                }, 280);
             },
 
             grantAccess() {
@@ -938,25 +950,35 @@
             }
         };
 
-        // GESTOR DE CAMPAÑA Y SENSACIÓN DE URGENCIA
+        // GESTOR DE CAMPAÑA (sin cambios)
         const CampaignManager = {
             init() {
-                let targetDate = new Date();
-                targetDate.setDate(targetDate.getDate() + 2); // Siempre 2 días adelante para marketing
+                // === COUNTDOWN (se reinicia cada 3 días para urgencia real) ===
+                function getNextResetDate() {
+                    const now = new Date();
+                    const cycleDays = 3;
+                    const start = new Date('2026-06-28'); // Inicio de la tanda actual
+                    const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+                    const daysIntoCycle = diffDays % cycleDays;
+                    const nextReset = new Date(start);
+                    nextReset.setDate(start.getDate() + diffDays + (cycleDays - daysIntoCycle));
+                    return nextReset;
+                }
+
+                let targetDate = getNextResetDate();
 
                 function updateCountdown() {
-                    let now = new Date().getTime();
+                    const now = new Date().getTime();
                     let distance = targetDate - now;
 
                     if (distance < 0) {
-                        targetDate = new Date();
-                        targetDate.setDate(targetDate.getDate() + 2);
-                        return;
+                        targetDate = getNextResetDate();
+                        distance = targetDate - now;
                     }
 
-                    let d = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    let h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
                     document.getElementById('days').innerText = String(d).padStart(2, '0');
                     document.getElementById('hours').innerText = String(h).padStart(2, '0');
@@ -966,19 +988,28 @@
                 updateCountdown();
                 setInterval(updateCountdown, 1000);
 
-                // Fluctuación realista de cupos disponibles
-                let currentSpots = 6;
+                // === CUPOS DINÁMICOS (avanzan / disminuyen cada 3 días) ===
                 const spotLabel = document.getElementById('spotsLeft');
                 const progressBar = document.getElementById('spotProgress');
 
-                setInterval(() => {
-                    if (currentSpots > 1 && Math.random() > 0.8) {
-                        currentSpots--;
-                        spotLabel.innerText = `${currentSpots} Cupos Libres`;
-                        let percent = (currentSpots / 8) * 100;
-                        progressBar.style.width = `${percent}%`;
-                    }
-                }, 40000);
+                function updateSpots() {
+                    const now = new Date();
+                    const startDate = new Date('2026-06-28');
+                    const daysPassed = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+                    
+                    // Base 15 cupos. Disminuye 1 cada 3 días (máx urgencia)
+                    let remaining = Math.max(4, 15 - Math.floor(daysPassed / 3));
+                    
+                    spotLabel.innerText = `${remaining} Cupos Libres`;
+                    
+                    // Barra casi llena al inicio y va "avanzando" la urgencia
+                    const percent = Math.max(28, Math.round((remaining / 15) * 100));
+                    progressBar.style.width = `${percent}%`;
+                }
+
+                updateSpots();
+                // Actualizar cada hora por si el usuario deja la página abierta
+                setInterval(updateSpots, 1000 * 60 * 60);
             }
         };
 
@@ -988,15 +1019,70 @@
                 const logo = document.querySelector('.animate-pulse');
                 if (logo) {
                     logo.classList.add('scale-110');
-                    setTimeout(() => logo.classList.remove('scale-110'), 200);
+                    setTimeout(() => logo.classList.remove('scale-110'), 180);
                 }
             }
         };
 
-        // Arranque general de sistemas
+        // === NUEVO: Abrir WhatsApp de forma más confiable en móviles ===
+        function openWhatsApp() {
+            AudioEngine.playClick();
+            
+            const phone = "59175954334";
+            const message = "Hola Roberth, quiero postular a Andessa para iniciar mi embudo de ventas. ¿Cuándo agendamos la entrevista?";
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://wa.me/${phone}?text=${encodedMessage}`;
+            
+            // Ultra compatible para móviles + WhatsApp Business
+            const link = document.createElement('a');
+            link.href = url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // === NUEVO: Shake sutil periódico en la foto grande + clic reproduce música ===
+        function initProfilePhotoShake() {
+            const header = document.querySelector('header.cyber-glass-card');
+            if (!header) return;
+
+            // Hacer que toda la cabecera sea clickeable para activar música
+            header.style.cursor = 'pointer';
+            
+            header.addEventListener('click', (e) => {
+                // Solo activar música si no se hizo clic en el logo pequeño
+                if (!e.target.closest('.w-16.h-16')) {
+                    AudioEngine.initBackgroundMusic();
+                    AudioEngine.playClick();
+                    
+                    // Shake más notorio al tocar
+                    header.classList.add('subtle-shake');
+                    setTimeout(() => {
+                        header.classList.remove('subtle-shake');
+                    }, 450);
+                }
+            });
+
+            // Shake sutil automático cada cierto tiempo (discreto pero notable)
+            setInterval(() => {
+                // Solo si el usuario no está interactuando con el modal
+                const modal = document.getElementById('securityModal');
+                if (modal && modal.classList.contains('hidden')) {
+                    header.classList.add('subtle-shake');
+                    setTimeout(() => {
+                        header.classList.remove('subtle-shake');
+                    }, 420);
+                }
+            }, 13500); // Cada ~13.5 segundos (discreto)
+        }
+
+        // Arranque optimizado
         window.onload = function() {
             CanvasBackground.init();
             CampaignManager.init();
+            initProfilePhotoShake(); // Activa el shake sutil de la foto grande
         };
     </script>
 </body>
