@@ -266,8 +266,9 @@
                             ROBERTH CORIZA
                         </h1>
                         <p class="text-xs text-white/90 font-semibold tracking-wide">
-                            LIDERANDO EQUIPOS EN <span class="andessa-text-holo">ANDESSA</span>
+                            LIDERANDO EQUIPOS EN <span class="andessa-text-holo cursor-pointer" onclick="goToAndessaOfficial()">ANDESSA</span>
                         </p>
+                        <p class="text-[9.5px] text-white/60 tracking-wide mt-0.5">Patrocinado con conocimiento académico y experiencia comprobada</p>
                     </div>
                 </div>
                 
@@ -282,13 +283,24 @@
         <!-- PANEL DE ACCIÓN: Convocatoria Digital Activa de Alta Conversión -->
         <section class="cyber-glass-card rounded-3xl p-6 space-y-5 relative overflow-hidden shadow-neon-gold border-gold/40">
             
-            <div class="text-center space-y-1.5">
+            <div class="text-center space-y-2">
                 <span class="text-[9px] font-display text-gold tracking-[0.25em] font-extrabold uppercase block">
-                    <i class="fa-solid fa-atom mr-1.5 text-gold animate-spin-slow"></i>CUPOS LIMITADOS DISPONIBLES
+                    <i class="fa-solid fa-atom mr-1.5 text-gold animate-spin-slow"></i>ETAPA TEMPRANA • SOLO QUIENES ENTIENDEN EL TIMING
                 </span>
                 <h3 class="font-display text-lg font-black text-white tracking-wide uppercase leading-snug">
-                    POSTULA PARA INICIAR TU EMBUDO DE VENTAS EN <span class="andessa-text-holo">ANDESSA</span>
+                    <span class="andessa-text-holo cursor-pointer" onclick="goToAndessaOfficial()">ANDESSA</span> ESTÁ CONSTRUYENDO AHORA.<br>QUIENES ENTRAN EN ESTA FASE MULTIPLICAN MÁS RÁPIDO.
                 </h3>
+                <p class="text-[10px] text-white/70 max-w-[260px] mx-auto leading-tight">
+                    La mayoría llega cuando ya todo está armado.<br>Los que realmente escalan entran cuando la estructura todavía se está definiendo.
+                </p>
+
+                <!-- Mensaje de presencia + pioneer status -->
+                <div class="flex items-center justify-center gap-2 pt-1">
+                    <div class="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-3 py-0.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="text-[9px] text-emerald-300 font-medium tracking-wide">Ahora mismo en La Paz • Etapa temprana activa</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Temporizador Digital de Presión de Vencimiento -->
@@ -329,9 +341,9 @@
                 <div class="absolute inset-0 rounded-2xl bg-emerald-500/25 btn-radar-ripple-1 pointer-events-none -z-10"></div>
                 <div class="absolute inset-0 rounded-2xl bg-teal-500/15 btn-radar-ripple-2 pointer-events-none -z-10"></div>
                 
-                <button onclick="openWhatsApp()" 
+                <button onclick="openWhatsApp(event)" 
                         onmouseover="AudioEngine.playHover()"
-                        class="relative w-full flex items-center justify-between bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-2xl p-4 shadow-[0_0_25px_rgba(16,185,129,0.35)] group transition-all duration-300 transform active:scale-95 overflow-hidden border border-emerald-400/40">
+                        class="relative w-full flex items-center justify-between bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-2xl p-4 shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] group transition-all duration-300 transform active:scale-95 hover:-translate-y-0.5 overflow-hidden border border-emerald-400/40">
                     
                     <!-- Destello de escaneo -->
                     <div class="absolute inset-0 w-1/2 h-full bg-white/10 skew-x-[-25deg] -translate-x-[150%] group-hover:animate-[swipeBtn_2s_infinite]"></div>
@@ -341,8 +353,8 @@
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
                         <div class="text-left min-w-0 flex-1">
-                            <span class="font-display text-[13px] sm:text-sm font-black tracking-wider block leading-tight">POSTULAR A ANDESSA</span>
-                            <span class="text-[9.5px] text-emerald-100 tracking-wide font-light block leading-tight">Agenda tu entrevista ahora</span>
+                            <span class="font-display text-[13px] font-black tracking-wider block leading-tight">SOLICITAR ACCESO ESTRATÉGICO</span>
+                            <span class="text-[9.5px] text-emerald-100 tracking-wide font-light block leading-tight">Solo para quienes ya entienden cómo funciona el juego</span>
                         </div>
                     </div>
                     <i class="fa-solid fa-arrow-right text-white/95 group-hover:translate-x-1.5 transition-transform relative z-10 flex-shrink-0 ml-1"></i>
@@ -1025,11 +1037,29 @@
         };
 
         // === NUEVO: Abrir WhatsApp de forma más confiable en móviles ===
-        function openWhatsApp() {
+        function openWhatsApp(e) {
             AudioEngine.playClick();
             
+            // ✨ EFECTO CREATIVO: Ráfaga de chispas al hacer clic en el botón de WhatsApp
+            if (e && typeof CanvasBackground !== 'undefined' && CanvasBackground.createSparks) {
+                try {
+                    const btn = e.target.closest('button') || e.target;
+                    const rect = btn.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    
+                    CanvasBackground.createSparks(centerX, centerY, 14);
+                    
+                    setTimeout(() => {
+                        if (CanvasBackground && CanvasBackground.createSparks) {
+                            CanvasBackground.createSparks(centerX + 10, centerY - 8, 7);
+                        }
+                    }, 90);
+                } catch(err) {}
+            }
+            
             const phone = "59175954334";
-            const message = "Hola Roberth, quiero postular a Andessa para iniciar mi embudo de ventas. ¿Cuándo agendamos la entrevista?";
+            const message = "Hola Roberth, quiero solicitar acceso al proceso estratégico. Ya entiendo que esto va más allá de las tácticas comunes y estoy listo para operar con ventaja real. ¿Cuándo podemos hablar?";
             const encodedMessage = encodeURIComponent(message);
             const url = `https://wa.me/${phone}?text=${encodedMessage}`;
             
@@ -1041,6 +1071,17 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        }
+
+        // Ir a la página oficial de Andessa con confirmación elegante
+        function goToAndessaOfficial() {
+            AudioEngine.playClick();
+            
+            const confirmed = confirm("Estás a punto de ir a la página oficial de ANDESSA.\n\nRoberth Coriza es uno de los destacados de la empreza con conocimiento académico y experiencia comprobada.");
+            
+            if (confirmed) {
+                window.open("https://www.andessapf.com/", "_blank");
+            }
         }
 
         // === NUEVO: Shake sutil periódico en la foto grande + clic reproduce música ===
