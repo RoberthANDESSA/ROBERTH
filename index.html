@@ -341,9 +341,9 @@
                 <div class="absolute inset-0 rounded-2xl bg-emerald-500/25 btn-radar-ripple-1 pointer-events-none -z-10"></div>
                 <div class="absolute inset-0 rounded-2xl bg-teal-500/15 btn-radar-ripple-2 pointer-events-none -z-10"></div>
                 
-                <button onclick="openWhatsApp(event)" 
+                <button onclick="openWhatsApp()" 
                         onmouseover="AudioEngine.playHover()"
-                        class="relative w-full flex items-center justify-between bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-2xl p-4 shadow-[0_0_25px_rgba(16,185,129,0.35)] hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] group transition-all duration-300 transform active:scale-95 hover:-translate-y-0.5 overflow-hidden border border-emerald-400/40">
+                        class="relative w-full flex items-center justify-between bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-2xl p-4 shadow-[0_0_25px_rgba(16,185,129,0.35)] group transition-all duration-300 transform active:scale-95 overflow-hidden border border-emerald-400/40">
                     
                     <!-- Destello de escaneo -->
                     <div class="absolute inset-0 w-1/2 h-full bg-white/10 skew-x-[-25deg] -translate-x-[150%] group-hover:animate-[swipeBtn_2s_infinite]"></div>
@@ -359,6 +359,17 @@
                     </div>
                     <i class="fa-solid fa-arrow-right text-white/95 group-hover:translate-x-1.5 transition-transform relative z-10 flex-shrink-0 ml-1"></i>
                 </button>
+
+                <!-- Nuevo botón verde directo a la web oficial de ANDESSA -->
+                <a href="https://www.andessapf.com/" 
+                   target="_blank"
+                   onclick="AudioEngine.playClick()"
+                   class="mt-3 relative w-full flex items-center justify-center bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white rounded-2xl py-3.5 px-6 shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all active:scale-[0.985] border border-emerald-400/50 group">
+                    <div class="flex items-center gap-3">
+                        <span class="font-display text-base font-black tracking-[1.5px]">ANDESSA</span>
+                        <span class="text-[10px] text-emerald-100 tracking-wide font-medium">Página Oficial →</span>
+                    </div>
+                </a>
             </div>
 
         </section>
@@ -1036,11 +1047,11 @@
             }
         };
 
-        // === NUEVO: Abrir WhatsApp de forma más confiable en móviles ===
+        // === NUEVO: Abrir WhatsApp de forma más confiable en móviles + EFECTO CREATIVO DE CHISPAS ===
         function openWhatsApp(e) {
             AudioEngine.playClick();
             
-            // ✨ EFECTO CREATIVO: Ráfaga de chispas al hacer clic en el botón de WhatsApp
+            // ✨ EFECTO CREATIVO: Ráfaga de chispas al hacer clic
             if (e && typeof CanvasBackground !== 'undefined' && CanvasBackground.createSparks) {
                 try {
                     const btn = e.target.closest('button') || e.target;
@@ -1058,7 +1069,7 @@
                 } catch(err) {}
             }
             
-            const phone = "59175954334";
+            const phone = "59176797842";
             const message = "Hola Roberth, quiero solicitar acceso al proceso estratégico. Ya entiendo que esto va más allá de las tácticas comunes y estoy listo para operar con ventaja real. ¿Cuándo podemos hablar?";
             const encodedMessage = encodeURIComponent(message);
             const url = `https://wa.me/${phone}?text=${encodedMessage}`;
